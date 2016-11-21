@@ -1,0 +1,48 @@
+header {
+    border-bottom: 1px solid black;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#05f1ff+0,28a0ff+100 */
+background: rgb(5,241,255); /* Old browsers */
+background: -moz-linear-gradient(-45deg,  rgba(5,241,255,1) 0%, rgba(40,160,255,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  rgba(5,241,255,1) 0%,rgba(40,160,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  rgba(5,241,255,1) 0%,rgba(40,160,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05f1ff', endColorstr='#28a0ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    color: #37003C;
+    font-family: 'Ravi Prakash', cursive;
+    font-size: 20px;
+}
+
+#header h1 {
+    margin-left: 20px;
+    padding-top: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+#header a, #header input {
+    display: inline-block;
+    font-size: 18px;
+}
+
+#login-form a.btn {
+    background-color: #37003C;
+}
+
+body {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#37003c+0,6b476d+88 */
+background: #37003c; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #37003c 0%, #6b476d 88%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #37003c 0%,#6b476d 88%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #37003c 0%,#6b476d 88%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37003c', endColorstr='#6b476d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+background-attachment: fixed;
+}
+#register-form {
+    color: #05F1FF;
+    font-family: 'Comic Sans MS';
+}
+
+#register-form a.btn {
+    background-color: #05F1FF;
+    color: #37003C;
+}
