@@ -2,25 +2,30 @@
 
 const express = require("express");
 const app = express();
-const pug = require("pug");
+//const pug = require("pug");
 
-var port = process.env.PORT || 8080;
+var env = process.env.PORT || "development";
+let config = require('./server/config/config')[env]
 
-app.set("view engine", "ejs");
-app.set(__dirname + "/views/");
+require('./server/config/database')(config);
 
-app.use(express.static(__dirname + "/public"));
+app.set("view engine", "pug");
+app.set("views", config.rootPath + "/server/views");
+
+app.use(express.static(config.rootPath + "/public"));
 
 app.get("/", (req, res) => {
-    let html = pug.renderFile("./views/index.pug");
-    res.send(html);
+    //let html = pug.renderFile("./server/views/index.pug");
+    //res.send(html);
+    res.render("index");
 });
 
 app.get("/login", (req, res) => {
-    let html = pug.renderFile("./views/logged-user.pug");
-    res.send(html);
+    //let html = pug.renderFile("./server/views/logged-user.pug");
+    //res.send(html);
+    res.render("logged-user");
 });
 
-app.listen(port, () => {
-    console.log(`Our app is running on http://localhost:${port}`);
+app.listen(config.port, () => {
+    console.log(`Our app is running on http://localhost:${config.port}`);
 });
