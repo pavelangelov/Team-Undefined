@@ -12,4 +12,10 @@ module.exports = (app) => {
         //res.send(html);
         res.render("logged-user");
     });
+
+    app.all('*', (req, res) => {
+        res.status(404)
+        res.send('Not Found')
+        res.end()
+    });
 }
