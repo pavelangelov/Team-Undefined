@@ -13,3 +13,32 @@
 //         res.redirect("/");
 //     }
 // };
+
+const db = require("../../database/fakeDatas");
+
+module.exports = {
+    getAllUsers() {
+        let users = db.users;
+
+        return Promise.resolve()
+                .then(() => {
+                    return users;
+                });
+    },
+    getUserById(id) {
+        let user = db.users.find(x => x._id === id);
+
+        return Promise.resolve()
+                .then(() => {
+                    return user;
+                });
+    },
+    getUserByUsername(username) {
+        let user = db.users.find(x => x.username === username);
+
+        return Promise.resolve()
+                .then(() => {
+                    return user;
+                });
+    }
+};

@@ -14,8 +14,8 @@ html(lang="en")
                 div(id="user-info" class=" col-sm-5")
                     div(class="row")
                         div(class="user-image col-sm-1 col-sm-offset-8")
-                            img(src="./images/ninja.jpg" alt="" class="profile-picture")
-                        a(href="#" class="username col-sm-3") Pavel Angelov
+                            img(src=image alt="" class="profile-picture")
+                        a(href="#" class="username col-sm-3") #{username}
             nav(id="nav")
                 ul(id="nav-list" class="row")
                     li(class="nav-list-item col-sm-3")
@@ -27,68 +27,15 @@ html(lang="en")
                     li(class="nav-list-item col-sm-3")
                         a(href="#") Logout
         main(id="main")
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Some user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Other user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Another user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Some other user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Some user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
-            div(class="post row col-sm-7 col-sm-offset-2")
-                header(class="row")
-                    img(src="./images/ninja.jpg" alt="" class="user-image col-sm-6")
-                    div(class="username col-sm-5")
-                        a(href="#") Some user
-                div(class="post-content row col-sm-9 col-sm-offset-1")
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-                
-                div(class="post-buttons row col-sm-10")
-                    button(class="btn btn-primary like") Like
-                    button(class="btn btn-primary comments") View comments
+            each message in messages
+                div(class="post row col-sm-7 col-sm-offset-2")
+                    header(class="row")
+                        img(src=message.image alt="" class="user-image col-sm-6")
+                        div(class="username col-sm-5")
+                            a(href="#") #{message.author}
+                    div(class="post-content row col-sm-9 col-sm-offset-1")
+                        p #{message.content}
+                    div(class="post-buttons row col-sm-10")
+                        button(class="btn btn-primary like") Like
+                        button(class="btn btn-primary comments") View comments
+            

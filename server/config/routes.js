@@ -1,18 +1,25 @@
 "use strict";
 
 const pug = require("pug");
+const controler = require("../controllers");
 
 module.exports = (app) => {
     app.get("/", (req, res) => {
         let html = pug.renderFile("./server/views/index.pug");
         res.send(html);
-        // res.render("index");
     });
 
     app.get("/login", (req, res) => {
-        let html = pug.renderFile("./server/views/logged-user.pug");
-        res.send(html);
-        // res.render("logged-user");
+        controler.users.getUserByUsername("pavel")
+            .then(user => {
+                pug.renderFile("./server/views/logged-user.pug", user, (err, html) => {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    res.send(html);
+                });
+            });
     });
 
     app.all("*", (req, res) => {
