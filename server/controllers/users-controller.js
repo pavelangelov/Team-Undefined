@@ -1,15 +1,15 @@
-"use strict"
+"use strict";
 
 let User = require("mongoose").model("User");
 
 module.exports = {
     register: (req, res) => {
-        res.redirect('/');
+        res.redirect("/");
     },
     login: (req, res) => {
-        res.redirect('/');
+        res.redirect("/");
     },
     logout: (req, res) => {
-        res.redirect('/');
+        res.redirect("/");
     }
-}
+};

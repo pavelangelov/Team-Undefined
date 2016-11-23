@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const mongoose = require("mongoose");
 
@@ -8,10 +8,14 @@ module.exports = (config) => {
     let db = mongoose.connection;
 
     db.once("open", err => {
-        if (err) console.log(err)
+        if (err) {
+            console.log(err);
+        }
 
         console.log("MongoDB ready!");
-    })
+    });
 
-    db.on("error", err => console.log("Database error: " + err));
-}
+    db.on("error", err => {
+        console.log(`Database error: ${err}`);
+    });
+};

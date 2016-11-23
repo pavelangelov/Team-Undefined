@@ -1,7 +1,5 @@
-"use strict"
+"use strict";
 
-let usersController = require('./users-controller');
+let usersController = require("./users-controller");
 
-module.exports = {
-    users: usersController
-}
+module.exports = { users: usersController };
