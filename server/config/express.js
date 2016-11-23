@@ -1,12 +1,12 @@
-"use strict"
+"use strict";
 
 const express = require("express");
 
-module.exports = (config, app) => {
+module.exports = (rootPath, app) => {
     app.set("view engine", "pug");
-    app.set("views", config.rootPath + "/server/views");
+    app.set("views", `${rootPath}/server/views`);
 
-    //here load other routs
+    // here load other routs
 
-    app.use(express.static(config.rootPath + "/public"));
-}
+    app.use(express.static(`${rootPath}/public`));
+};
