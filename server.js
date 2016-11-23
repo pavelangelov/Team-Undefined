@@ -4,7 +4,7 @@ const express = require("express");
 
 const app = express();
 
-let env = process.env.prot || "development";
+let env = process.env.port || "development";
 let config = require("./server/config/config")[env];
 
 // require("./server/config/database")(config);
