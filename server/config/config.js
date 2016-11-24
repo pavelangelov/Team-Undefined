@@ -1,18 +1,18 @@
 "use strict";
 
 const path = require("path");
+const developmentPort = 3001;
 
 let rootPath = path.normalize(path.join(__dirname, "/../../"));
 
+
 module.exports = {
     development: {
-        rootPath,
         db: "mongodb://localhost:27017/team-undefined-db",
-        port: 8080
+        port: developmentPort
     },
     production: {
-        rootPath,
         // db: process.env.MONGO_DB_CONN_STRING,
-        port: process.evn.PORT
-    }
+    },
+    path: { rootPath }
 };

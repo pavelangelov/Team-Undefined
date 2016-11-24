@@ -1,8 +1,8 @@
 "use strict";
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-let requiredValidationMessage = "{PATH} is required";
+// let requiredValidationMessage = "{PATH} is required";
 
 // let userSchema = mongoose.Schema({
 //     firstName: { type: String, required: requiredValidationMessage },
