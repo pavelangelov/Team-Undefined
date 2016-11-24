@@ -2,11 +2,11 @@
 
 const express = require("express");
 
-module.exports = (rootPath, app) => {
+module.exports = (config, app) => {
     app.set("view engine", "pug");
-    app.set("views", `${rootPath}/server/views`);
+    app.set("views", `${config.path.rootPath}/server/views`);
 
     // here load other routs
 
-    app.use(express.static(`${rootPath}/public`));
+    app.use(express.static(`${config.path.rootPath}/public`));
 };

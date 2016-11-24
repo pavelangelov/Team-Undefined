@@ -1,18 +1,16 @@
 "use strict";
 
-const pug = require("pug");
 const controler = require("../controllers");
 
 module.exports = (app) => {
     app.get("/", (req, res) => {
-        let html = pug.renderFile("./server/views/index.pug");
-        res.send(html);
+        res.render("index");
     });
 
     app.get("/login", (req, res) => {
         controler.users.getUserByUsername("pavel")
             .then(user => {
-                pug.renderFile("./server/views/logged-user.pug", user, (err, html) => {
+                res.render("logged-user", user, (err, html) => {
                     if (err) {
                         console.log(err);
                     }
@@ -20,6 +18,10 @@ module.exports = (app) => {
                     res.send(html);
                 });
             });
+    });
+
+    app.get("/logout", (req, res) => {
+        res.redirect("/");
     });
 
     app.all("*", (req, res) => {
