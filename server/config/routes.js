@@ -10,7 +10,7 @@ module.exports = (app) => {
     app.get("/login", (req, res) => {
         controler.users.getUserByUsername("pavel")
             .then(user => {
-                res.render("logged-user", user);
+                res.render("user-home", user);
             });
     });
 
