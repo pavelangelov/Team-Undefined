@@ -92,3 +92,12 @@ body {
 .post .username a {
     font-size: 20px;
 }
+
+.post .likes {
+    color: #37003C;
+    font-size: 18px;
+}
+
+.post .likes span {
+    color: darkblue;
+}

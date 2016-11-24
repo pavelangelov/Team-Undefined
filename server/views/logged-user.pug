@@ -1,13 +1,10 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        title="Ninja`s Social Network"
-        link(rel="stylesheet" href="./css/loged-user.css")
-        link(href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet")
-        link(rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css")
-
-    body
+extends _layout
+block site-title
+    | Home Page
+block style
+    link(rel="stylesheet" href="./css/loged-user.css")
+    
+block container
         div(id="pos-fixed")
             header(id="header" class="row")
                 h1(class="col-sm-6") Ninja`s Social Network
@@ -33,9 +30,11 @@ html(lang="en")
                         img(src=message.image alt="" class="user-image col-sm-6")
                         div(class="username col-sm-5")
                             a(href="#") #{message.author}
-                    div(class="post-content row col-sm-9 col-sm-offset-1")
+                    div(class="post-content row col-sm-11 col-sm-offset-1")
                         p #{message.content}
-                    div(class="post-buttons row col-sm-10")
-                        button(class="btn btn-primary like") Like
-                        button(class="btn btn-primary comments") View comments
+                    div(class="post-buttons row col-sm-12")
+                        button(class="btn btn-primary like col-sm-2") Like
+                        button(class="btn btn-primary comments col-sm-3 col-sm-offset-1") View comments
+                        div.likes(class="col-sm-2 col-sm-offset-4") Likes: 
+                            span #{message.likes}
             
