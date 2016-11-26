@@ -4,8 +4,6 @@ const express = require("express");
 const path = require("path");
 const config = require("./server/config/config");
 
-let rootPath = path.normalize(path.join(__dirname, "./"));
-
 const app = express();
 
 let port = process.env.PORT || config.development.port;

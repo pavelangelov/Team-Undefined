@@ -1,5 +1,3 @@
-/* globals params */
-
 "use strict";
 
 const controler = require("../controllers");
