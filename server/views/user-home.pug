@@ -2,39 +2,21 @@ extends _layout
 block site-title
     | Home Page
 block style
-    link(rel="stylesheet" href="./css/user-home.css")
+    link(rel="stylesheet" href="/static/css/user-home.css")
     
 block container
-        div(id="pos-fixed")
-            header(id="header" class="row")
-                h1(class="col-sm-6") Ninja`s Social Network
-                div(id="user-info" class=" col-sm-5")
-                    div(class="row")
-                        div(class="user-image col-sm-1 col-sm-offset-8")
-                            img(src=image alt="" class="profile-picture")
-                        a(href="#" class="username col-sm-3") #{username}
-            nav(id="nav")
-                ul(id="nav-list" class="row")
-                    li(class="nav-list-item col-sm-3")
-                        a(href="#") Friends
-                    li(class="nav-list-item col-sm-3")
-                        a(href="#") Messages
-                    li(class="nav-list-item col-sm-3")
-                        a(href="#") Account info
-                    li(class="nav-list-item col-sm-3")
-                        a(href="/logout") Logout
         main(id="main")
-            each message in messages
+            each post in posts
                 div(class="post row col-sm-7 col-sm-offset-2")
                     header(class="row")
-                        img(src=message.image alt="" class="user-image col-sm-6")
+                        img(src=post.image alt="" class="user-image col-sm-6")
                         div(class="username col-sm-5")
-                            a(href="#") #{message.author}
+                            a(href="#") #{post.author}
                     div(class="post-content row col-sm-11 col-sm-offset-1")
-                        p #{message.content}
+                        p #{post.content}
                     div(class="post-buttons row col-sm-12")
                         button(class="btn btn-primary like col-sm-2") Like
                         button(class="btn btn-primary comments col-sm-3 col-sm-offset-1") View comments
                         div.likes(class="col-sm-2 col-sm-offset-4") Likes: 
-                            span #{message.likes}
+                            span #{post.likes}
             

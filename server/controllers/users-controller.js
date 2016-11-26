@@ -40,5 +40,14 @@ module.exports = {
                 .then(() => {
                     return user;
                 });
+    },
+    getPostsByUserId(userId) {
+        let posts = db.posts
+                .filter(post => post.authorId === userId || post.targetUserId === userId);
+
+        return Promise.resolve()
+                .then(() => {
+                    return posts;
+                })
     }
 };

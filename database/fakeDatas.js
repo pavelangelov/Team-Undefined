@@ -7,37 +7,37 @@ const users = [
         password: "parola",
         firstname: "Pavel",
         lastname: "Angelov",
-        image: "./images/ninja.jpg",
+        image: "/static/images/ninja.jpg",
         friends: [
             {
                 _id: "qqwweerrssaa",
                 username: "pesho",
-                image: "./images/pesho.jpg"
+                image: "/static/images/pesho.jpg"
             },
             {
                 _id: "mmddvvjjddww",
                 username: "gosho",
-                image: "./images/gosho.jpg"
+                image: "/static/images/gosho.jpg"
             },
             {
                 _id: "ppllkkddffgg",
                 username: "tosho",
-                image: "./images/tosho.jpg"
+                image: "/static/images/tosho.jpg"
             },
             {
                 _id: "wwrrmmnnbbff",
                 username: "kiro",
-                image: "./images/kiro.png"
+                image: "/static/images/kiro.png"
             },
             {
                 _id: "aawwqqeegghh",
                 username: "marko",
-                image: "./images/marko.png"
+                image: "/static/images/marko.png"
             },
             {
                 _id: "ooiiuuyyttdd",
                 username: "petko",
-                image: "./images/petko.png"
+                image: "/static/images/petko.png"
             }
         ],
         messages: [
@@ -45,65 +45,118 @@ const users = [
                 _id: "aawweeqqeeqq",
                 author: "pesho",
                 authorId: "qqwweerrssaa",
-                image: "./images/pesho.jpg",
+                image: "/static/images/pesho.jpg",
                 postDate: new Date().toLocaleDateString(),
-                likes: 0,
-                content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+                content: "Whatzuup bro!"
             },
             {
                 _id: "aawweeqqeeqq",
                 author: "gosho",
                 authorId: "mmddvvjjddww",
-                image: "./images/gosho.jpg",
+                image: "/static/images/gosho.jpg",
                 postDate: new Date().toLocaleDateString(),
-                likes: 2,
-                content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+                content: "Kyde se gubish mladej :)"
             },
             {
                 _id: "aawweeqqeeqq",
                 author: "tosho",
                 authorId: "ppllkkddffgg",
-                image: "./images/tosho.jpg",
+                image: "/static/images/tosho.jpg",
                 postDate: new Date().toLocaleDateString(),
-                likes: 10,
                 content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
             },
             {
                 _id: "aawweeqqeeqq",
                 author: "kiro",
                 authorId: "wwrrmmnnbbff",
-                image: "./images/kiro.png",
+                image: "/static/images/kiro.png",
                 postDate: new Date().toLocaleDateString(),
-                likes: 0,
                 content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
             },
             {
                 _id: "aawweeqqeeqq",
                 author: "marko",
                 authorId: "aawwqqeegghh",
-                image: "./images/marko.png",
+                image: "/static/images/marko.png",
                 postDate: new Date().toLocaleDateString(),
-                likes: 4,
                 content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
             },
             {
                 _id: "aawweeqqeeqq",
                 author: "petko",
                 authorId: "ooiiuuyyttdd",
-                image: "./images/petko.png",
+                image: "/static/images/petko.png",
                 postDate: new Date().toLocaleDateString(),
-                likes: 8,
                 content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
             }
         ]
     }
 ];
 
-const messages = [
-
+const posts = [
+    {
+        _id: "aawweeqqeeqq",
+        author: "pesho",
+        authorId: "qqwweerrssaa",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/pesho.jpg",
+        postDate: new Date().toLocaleDateString(),
+        likes: 0,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    },
+    {
+        _id: "aawweeqqeeqq",
+        author: "gosho",
+        authorId: "mmddvvjjddww",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/gosho.jpg",
+        postDate: new Date().toLocaleDateString(),
+        likes: 2,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    },
+    {
+        _id: "aawweeqqeeqq",
+        author: "tosho",
+        authorId: "ppllkkddffgg",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/tosho.jpg",
+        postDate: new Date().toLocaleDateString(),
+        likes: 10,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    },
+    {
+        _id: "aawweeqqeeqq",
+        author: "kiro",
+        authorId: "wwrrmmnnbbff",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/kiro.png",
+        postDate: new Date().toLocaleDateString(),
+        likes: 0,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    },
+    {
+        _id: "aawweeqqeeqq",
+        author: "marko",
+        authorId: "aawwqqeegghh",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/marko.png",
+        postDate: new Date().toLocaleDateString(),
+        likes: 4,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    },
+    {
+        _id: "aawweeqqeeqq",
+        author: "petko",
+        authorId: "ooiiuuyyttdd",
+        targetUserId: "aabbvvggddee",
+        image: "/static/images/petko.png",
+        postDate: new Date().toLocaleDateString(),
+        likes: 8,
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!"
+    }
 ];
 
 module.exports = {
     users,
-    messages
+    posts
 };

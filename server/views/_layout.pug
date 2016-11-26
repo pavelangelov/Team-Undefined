@@ -7,8 +7,26 @@ html(lang="en")
             block site-title
         block style
         link(href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet")
-        link(rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
 
     body
+    div(id="pos-fixed")
+            header(id="header" class="row")
+                h1(class="col-sm-6") Ninja`s Social Network
+                div(id="user-info" class=" col-sm-5")
+                    div(class="row")
+                        div(class="user-image col-sm-1 col-sm-offset-8")
+                            img(src=user.image alt="" class="profile-picture")
+                        a(href="/users/" + user.username + "/profile" class="username col-sm-3") #{user.username}
+            nav(id="nav")
+                ul(id="nav-list" class="row")
+                    li(class="nav-list-item col-sm-3")
+                        a(href=`/users/${user.username}/friends`) Friends
+                    li(class="nav-list-item col-sm-3")
+                        a(href=`/users/${user.username}/messages`) Messages
+                    li(class="nav-list-item col-sm-3")
+                        a(href="/about") About us
+                    li(class="nav-list-item col-sm-3")
+                        a(href="/logout") Logout
     #container
         block container
