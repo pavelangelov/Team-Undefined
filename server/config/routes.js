@@ -17,10 +17,17 @@ module.exports = (app) => {
             });
     });
 
-    app.get("/messages/:username", (req, res) => {
+    app.get("/users/:username/messages", (req, res) => {
         controler.users.getUserByUsername(req.params.username)
             .then(user => {
                 res.render("user-messages", { user, messages: user.messages });
+            });
+    });
+
+    app.get("/users/:username/profile", (req, res) => {
+        controler.users.getUserByUsername("pavel")
+            .then(user => {
+                res.render("user-profile", { user });
             });
     });
 

@@ -14,6 +14,6 @@ block container
                 header.message-header
                         img(src= message.image alt="" class="user-image")
                         div.author-username
-                            a(href="/" + message.author) #{message.author}
+                            a(href=`/users/${message.author}/profile`) #{message.author}
                 div.message
                     | #{message.content}

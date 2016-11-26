@@ -17,15 +17,15 @@ html(lang="en")
                     div(class="row")
                         div(class="user-image col-sm-1 col-sm-offset-8")
                             img(src=user.image alt="" class="profile-picture")
-                        a(href="#" class="username col-sm-3") #{user.username}
+                        a(href="/users/" + user.username + "/profile" class="username col-sm-3") #{user.username}
             nav(id="nav")
                 ul(id="nav-list" class="row")
                     li(class="nav-list-item col-sm-3")
-                        a(href="#") Friends
+                        a(href=`/users/${user.username}/friends`) Friends
                     li(class="nav-list-item col-sm-3")
-                        a(href="/messages/" + user.username) Messages
+                        a(href=`/users/${user.username}/messages`) Messages
                     li(class="nav-list-item col-sm-3")
-                        a(href="#") Account info
+                        a(href="/about") About us
                     li(class="nav-list-item col-sm-3")
                         a(href="/logout") Logout
     #container
