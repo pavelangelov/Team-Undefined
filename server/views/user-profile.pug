@@ -1,0 +1,36 @@
+extends _layout
+block site-title
+    | Profile
+block style
+    link(rel="stylesheet" href="/static/css/user-profile.css")
+    
+block container
+        main(id="main")
+            div(class="leftOption row col-sm-6 col-sm-3")
+                ul(id="listOfOption")
+                    li(class="post col-sm-10 col-sm-offset-1")
+                        a(href="#" class="btn btn-primary col-sm-10") Address
+                    li(class="post col-sm-10 col-sm-offset-1") 
+                        a(href="#" class="btn btn-primary col-sm-10") School
+                    li(class="post col-sm-10 col-sm-offset-1")
+                        a(href="#" class="btn btn-primary col-sm-10") Relationship
+                        
+            div(class="row col-sm-6" )
+                header(class="row")
+                    img(src= image alt="" class="col-sm-6")
+                    div(class="post username col-sm-5")
+                        a(href="#") #{username}
+                div(class="post row col-sm-11")
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
+            
+            div(class="rigthOption row col-sm-6 col-sm-3")
+                div(class="post")
+                    p Friends
+                ul(id="list")
+                    each friend in friends
+                        li(id="1")
+                            div(class="post row col-sm-11 col-sm-offset-1")
+                                a(href="/users/" + friend.username + "profile" class="btn btn-primary col-sm-10") #{friend.username}
+                                img(src=friend.image alt="" class="col-sm-2")
+
+            
