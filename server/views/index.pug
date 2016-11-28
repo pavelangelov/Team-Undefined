@@ -11,21 +11,21 @@ html(lang="en")
         header(id="header" class="row")
             h1(class="col-sm-6") Wellcome to Ninja`s Social Network
             div(id="login-form" class=" col-sm-3 col-sm-offset-2")
-                form(action="login" class="form-horizontal")
+                form(method="post" action="/login" class="form-horizontal")
                     label(for="email") Email
-                    input(type="text" id="email" class="form-control")
+                    input(type="text" id="email" name="email" class="form-control")
                     label(for="email") Password
-                    input(type="password" id="password" class="form-control")
-                    a(href="/login" class="btn btn-primary form-control") Log in
+                    input(type="password" id="password" name="password" class="form-control")
+                    input(type="submit" class="btn btn-primary form-control" value="Log in")
         main(id="main" class="row")
             div(id="register-form" class="col-sm-5 col-md-offset-3")
-                <form action="register" class="form-horizontal">
+                form(method="post" action="/register" class="form-horizontal")
                     label(for="email") Email
-                    input(type="text" class="email form-control")
+                    input(type="text" name="email" class="email form-control")
                     label(for="email") Password
-                    input(type="password" class="password form-control")
+                    input(type="password" name="password" class="password form-control")
                     label(for="email") Firstname
-                    input(type="text" class="firstname form-control")
+                    input(type="text" name="firstname" class="firstname form-control")
                     label(for="email") Lastname
-                    input(type="text" class="lastname form-control")
-                    a(href="#" class="btn btn-default form-control") Register
+                    input(type="text" name="lastname" class="lastname form-control")
+                    input(type="submit" class="btn btn-default form-control" value="Register")
