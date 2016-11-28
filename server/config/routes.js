@@ -40,6 +40,18 @@ module.exports = (app) => {
                     res.render("user-profile", { user });
                 });
         })
+        .get("/users/:username/update-details", (req, res) => {
+            controler.users.getUserByUsername(req.params.username)
+                .then(user => {
+                    res.render("update-details", { user });
+                })
+                .catch(err => console.log(err));
+        })
+        .post("/users/:username/update-details", (req, res) => {
+            let username = req.params.username;
+            // TODO: update user details in database
+            res.redirect(`/users/${username}/profile`);
+        })
         .get("/logout", (req, res) => {
             res.redirect("/");
         })
