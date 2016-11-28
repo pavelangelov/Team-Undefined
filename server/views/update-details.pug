@@ -1,0 +1,13 @@
+extends _layout
+block site-title
+	| Update profile
+block style
+	link(rel="stylesheet" href="/static/css/user-profile.css")
+block container
+	div#main.row.col-sm-12
+		form(method="post" action=`/users/${user.username}/update-details` class="col-sm-4 col-sm-offset-4")
+			input(type="text" name="firstname" placeholder="Firstname" class="form-control")
+			input(type="text" name="lasname" placeholder="Lastname" class="form-control")
+			input(type="password" name="newPassword" placeholder="Change your password" class="form-control")
+			input(type="password" name="confirmPassword" placeholder="Re-enter the new password" class="form-control")
+			input(type="submit" class="form-control btn btn-success" value="Update")
