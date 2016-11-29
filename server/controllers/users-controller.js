@@ -1,53 +1,57 @@
 "use strict";
 
-// let User = require("mongoose").model("User");
-
-// module.exports = {
-//     register: (req, res) => {
-//         res.redirect("/");
-//     },
-//     login: (req, res) => {
-//         res.redirect("/");
-//     },
-//     logout: (req, res) => {
-//         res.redirect("/");
-//     }
-// };
-
+let User = require("../data/user-model");
 const db = require("../../database/fakeDatas");
 
 module.exports = {
+    createUser(user) {
+        var newUser = new User({
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            password: user.password
+        });
+
+        return Promise.resolve()
+            .then(() => {
+                newUser.save((err, user) => {
+                    if (err) return console.log(err);
+
+                    console.log('User saved!');
+                });
+            });
+    },
     getAllUsers() {
         let users = db.users;
 
         return Promise.resolve()
-                .then(() => {
-                    return users;
-                });
+            .then(() => {
+                return users;
+            });
     },
     getUserById(id) {
         let user = db.users.find(x => x._id === id);
 
         return Promise.resolve()
-                .then(() => {
-                    return user;
-                });
+            .then(() => {
+                return user;
+            });
     },
     getUserByUsername(username) {
         let user = db.users.find(x => x.username === username);
 
         return Promise.resolve()
-                .then(() => {
-                    return user;
-                });
+            .then(() => {
+                return user;
+            });
     },
     getPostsByUserId(userId) {
         let posts = db.posts
-                .filter(post => post.authorId === userId || post.targetUserId === userId);
+            .filter(post => post.authorId === userId || post.targetUserId === userId);
 
         return Promise.resolve()
-                .then(() => {
-                    return posts;
-                })
+            .then(() => {
+                return posts;
+            })
     }
 };
