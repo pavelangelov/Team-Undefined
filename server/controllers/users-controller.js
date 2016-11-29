@@ -52,15 +52,6 @@ module.exports = {
         return Promise.resolve()
             .then(() => {
                 return posts;
-            })
-    },
-    getAllUserFriends(username) {
-        let friends = db.users
-            .find(x => x.username === username).friends;
-
-        return Promise.resolve()
-            .then(() => {
-                return friends;
             });
     }
 };
