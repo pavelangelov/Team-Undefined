@@ -36,8 +36,9 @@ module.exports = (app) => {
                 });
         })
         .get("/users/:username/profile", (req, res) => {
-            controler.users.getUserByUsername("pavel")
+            controler.users.getUserByUsername(req.params.username)
                 .then(user => {
+                    console.log(user.friends.length);
                     res.render("user-profile", { user });
                 });
         })

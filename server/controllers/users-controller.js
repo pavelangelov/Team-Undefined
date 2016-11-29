@@ -5,7 +5,7 @@ const db = require("../../database/fakeDatas");
 
 module.exports = {
     createUser(user) {
-        var newUser = new User({
+        let newUser = new User({
             email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
@@ -15,9 +15,10 @@ module.exports = {
         return Promise.resolve()
             .then(() => {
                 newUser.save((err, user) => {
-                    if (err) return console.log(err);
-
-                    console.log('User saved!');
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("User saved!");
                 });
             });
     },
