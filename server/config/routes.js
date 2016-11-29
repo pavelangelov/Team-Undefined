@@ -51,7 +51,24 @@ module.exports = (app) => {
         .post("/users/:username/update-details", (req, res) => {
             let username = req.params.username;
             // TODO: update user details in database
-            res.redirect(`/users/${username}/profile`);
+
+            let newPass = req.body.newPassword;
+            let confirmPassword = req.body.confirmPassword;
+
+            controler.users.getUserByUsername(username)
+                .then(user => {
+                    if (confirmPassword === newPass) {
+                        controler.users.updateInfo(user, newPass)
+                            .then(user => {
+                                res.redirect(`/users/${user.username}/profile`);
+                            });
+                    } else {
+                        res.render("update-details", { user });
+                    }
+                });
+
+
+            //res.redirect(`/users/${username}/profile`);
         })
         .get("/users/:username/friends", (req, res) => {
             controler.users.getUserByUsername("pavel")

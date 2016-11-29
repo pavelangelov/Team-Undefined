@@ -21,6 +21,13 @@ module.exports = {
                 });
             });
     },
+    updateInfo(user, newPassword) {
+        return Promise.resolve()
+            .then(() => {
+                //db.updateOne(user, $password: newPassword);
+                return user;
+            });
+    },
     getAllUsers() {
         let users = db.users;
 
