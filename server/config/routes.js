@@ -4,8 +4,8 @@ const controler = require("../controllers");
 
 module.exports = (app) => {
     app.get("/", (req, res) => {
-        res.render("index");
-    })
+            res.render("index");
+        })
         .post("/login", (req, res) => {
             let username = req.body.email,
                 password = req.body.password;
@@ -51,6 +51,12 @@ module.exports = (app) => {
             let username = req.params.username;
             // TODO: update user details in database
             res.redirect(`/users/${username}/profile`);
+        })
+        .get("/users/:username/friends", (req, res) => {
+            controler.users.getUserByUsername("pavel")
+                .then(user => {
+                    res.render("user-friends", { user, friends: user.friends });
+                });
         })
         .get("/logout", (req, res) => {
             res.redirect("/");

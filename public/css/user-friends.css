@@ -1,0 +1,19 @@
+ul {
+    list-style-type: none;
+}
+
+.friend {
+    margin: 5px;
+}
+
+.post {
+    display: inline-block;
+}
+
+#list {
+    margin-top: 200px;
+}
+
+.leftOption {
+    float: left;
+}

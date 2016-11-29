@@ -21,33 +21,42 @@ module.exports = {
         let users = db.users;
 
         return Promise.resolve()
-                .then(() => {
-                    return users;
-                });
+            .then(() => {
+                return users;
+            });
     },
     getUserById(id) {
         let user = db.users.find(x => x._id === id);
 
         return Promise.resolve()
-                .then(() => {
-                    return user;
-                });
+            .then(() => {
+                return user;
+            });
     },
     getUserByUsername(username) {
         let user = db.users.find(x => x.username === username);
 
         return Promise.resolve()
-                .then(() => {
-                    return user;
-                });
+            .then(() => {
+                return user;
+            });
     },
     getPostsByUserId(userId) {
         let posts = db.posts
-                .filter(post => post.authorId === userId || post.targetUserId === userId);
+            .filter(post => post.authorId === userId || post.targetUserId === userId);
 
         return Promise.resolve()
-                .then(() => {
-                    return posts;
-                })
+            .then(() => {
+                return posts;
+            });
+    },
+    getAllUserFriends(username) {
+        let friends = db.users
+            .find(x => x.username === username).friends;
+
+        return Promise.resolve()
+            .then(() => {
+                return friends;
+            });
     }
 };
