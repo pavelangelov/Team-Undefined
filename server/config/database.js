@@ -1,21 +1,23 @@
 "use strict";
 
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// module.exports = (config) => {
-//     mongoose.connect(config.db);
+mongoose.Promise = global.Promise;
 
-//     let db = mongoose.connection;
+module.exports = (config) => {
+    mongoose.connect(config.db);
 
-//     db.once("open", err => {
-//         if (err) {
-//             console.log(err);
-//         }
+    let db = mongoose.connection;
 
-//         console.log("MongoDB ready!");
-//     });
+    db.once("open", err => {
+        if (err) {
+            console.log(err);
+        }
 
-//     db.on("error", err => {
-//         console.log(`Database error: ${err}`);
-//     });
-// };
+        console.log("MongoDB ready!");
+    });
+
+    db.on("error", err => {
+        console.log(`Database error: ${err}`);
+    });
+};
