@@ -1,22 +1,26 @@
 "use strict";
 
-// let User = require("mongoose").model("User");
-
-// module.exports = {
-//     register: (req, res) => {
-//         res.redirect("/");
-//     },
-//     login: (req, res) => {
-//         res.redirect("/");
-//     },
-//     logout: (req, res) => {
-//         res.redirect("/");
-//     }
-// };
-
+let User = require("../data/user-model");
 const db = require("../../database/fakeDatas");
 
 module.exports = {
+    createUser(user) {
+        var newUser = new User({
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            password: user.password
+        });
+
+        return Promise.resolve()
+            .then(() => {
+                newUser.save((err, user) => {
+                    if (err) return console.log(err);
+
+                    console.log('User saved!');
+                });
+            });
+    },
     getAllUsers() {
         let users = db.users;
 
@@ -48,7 +52,7 @@ module.exports = {
         return Promise.resolve()
             .then(() => {
                 return posts;
-            });
+            })
     },
     getAllUserFriends(username) {
         let friends = db.users

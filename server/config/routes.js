@@ -1,6 +1,7 @@
 "use strict";
 
 const controler = require("../controllers");
+let User = require("../data/user-model");
 
 module.exports = (app) => {
     app.get("/", (req, res) => {
@@ -19,13 +20,13 @@ module.exports = (app) => {
                 });
         })
         .post("/register", (req, res) => {
-            let email = req.body.email,
-                password = req.body.password,
-                firstname = req.body.firstname,
-                lastname = req.body.lastname;
+            let user = req.body;
 
+            controler.users.createUser(user).then((newUser) => {
+                res.send(newUser)
+            });
             // TODO: check all value and escape bad symbols
-            res.send({ email, password, firstname, lastname });
+            //res.send({ email, password, firstname, lastname });
 
         })
         .get("/users/:username/messages", (req, res) => {

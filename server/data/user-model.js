@@ -1,14 +1,16 @@
 "use strict";
 
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+let requiredValidationMessage = "{PATH} is required";
 
-// let requiredValidationMessage = "{PATH} is required";
+let userSchema = new mongoose.Schema({
+    email: { type: String },
+    password: { type: String },
+    firstname: { type: String },
+    lastname: { type: String },
+    image: { type: String },
+    friends: [],
+    messages: []
+});
 
-// let userSchema = mongoose.Schema({
-//     firstName: { type: String, required: requiredValidationMessage },
-//     lastName: { type: String, required: requiredValidationMessage },
-//     email: { type: String, required: requiredValidationMessage },
-//     hashedPass: String
-// });
-
-// module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
