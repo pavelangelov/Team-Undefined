@@ -17,6 +17,7 @@ module.exports = (app) => {
         .post("/update-details", auth.updateUser)
         .get("/friends", auth.friends)
         .get("/logout", auth.logout)
+        .get("/about", auth.about)
         .all("*", (req, res) => {
             res.status(404);
             res.send("Not Found");
