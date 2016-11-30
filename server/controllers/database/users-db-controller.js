@@ -1,11 +1,11 @@
 "use strict";
 
-let User = require("../data/user-model");
-const db = require("../../database/fakeDatas");
+let User = require("../../models/user-model");
+const db = require("../../../database/fakeDatas");
 
 module.exports = {
     createUser(user) {
-        var newUser = new User({
+        let newUser = new User({
             email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
@@ -14,17 +14,22 @@ module.exports = {
 
         return Promise.resolve()
             .then(() => {
-                newUser.save((err, user) => {
-                    if (err) return console.log(err);
+                return "<h1>Save user is not implemented</h2>";
+                // newUser.save((err, user) => {
+                //     if (err) {
+                //         return console.log(err);
+                //     }
 
-                    console.log('User saved!');
-                });
+                //     console.log("User saved!");
+                // });
             });
     },
-    updateInfo(user, newPassword) {
+    updateUser(user, newPassword) {
+        // TODO: Update user details
+
         return Promise.resolve()
             .then(() => {
-                //db.updateOne(user, $password: newPassword);
+                // db.updateOne(user, $password: newPassword);
                 return user;
             });
     },
@@ -46,19 +51,9 @@ module.exports = {
     },
     getUserByUsername(username) {
         let user = db.users.find(x => x.username === username);
-
         return Promise.resolve()
             .then(() => {
                 return user;
-            });
-    },
-    getPostsByUserId(userId) {
-        let posts = db.posts
-            .filter(post => post.authorId === userId || post.targetUserId === userId);
-
-        return Promise.resolve()
-            .then(() => {
-                return posts;
             });
     }
 };
