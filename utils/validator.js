@@ -6,8 +6,8 @@ const constants = {
     USERNAME_MIN_LENGTH: 4,
     USERNAME_MAX_LENGTH: 20,
     PASSWORD_MIN_LENGTH: 40,
-    BAD_SYMBOLS: ["&", "<", ">"],
-    ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;"]
+    BAD_SYMBOLS: ["&", "<", ">", "\"", "'", "/", "(", ")", ".", "#", "=", "@", "`", "{", "}"],
+    ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#35;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
 };
 
 function validateIfUdefined(value, paramName) {
