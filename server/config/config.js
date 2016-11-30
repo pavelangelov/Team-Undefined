@@ -9,7 +9,8 @@ let rootPath = path.normalize(path.join(__dirname, "/../../"));
 module.exports = {
     development: {
         db: "mongodb://localhost:27017/test-db",
-        port: developmentPort
+        port: developmentPort,
+        secret: "secret_key"
     },
 
     /* production: {
