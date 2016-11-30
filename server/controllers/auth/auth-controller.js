@@ -94,10 +94,10 @@ module.exports = {
             res.render("update-details", { user });
         }
     },
-    about(req, res, net) {
+    about(req, res, next) {
         let team = dataController.team,
             user = req.user;
-            console.log(user);
+
         res.render("about", { user, team });
     },
     logout(req, res) {

@@ -6,8 +6,8 @@ const router = require("express").Router(),
 
 module.exports = (app) => {
     router.get("/", (req, res) => {
-            res.render("index");
-        })
+        res.render("index");
+    })
         .post("/login", auth.login)
         .get("/home", auth.home)
         .post("/register", auth.register)
