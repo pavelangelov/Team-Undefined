@@ -16,6 +16,5 @@ module.exports = (passport, data) => {
             .catch(error => done(error, false));
     });
 
-    // tell passport to use the strategy
     passport.use(strategy);
 };

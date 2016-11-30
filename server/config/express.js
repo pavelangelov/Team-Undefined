@@ -12,8 +12,10 @@ module.exports = (config, app) => {
     // here load other routs
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(cookieParser("purple unicorn"));
-    app.use(session({ secret: "purple unicorn" }));
+
+    let secretKey = process.env["SECRET_KEY"] || config.development.secret;
+    app.use(cookieParser(secretKey));
+    app.use(session({ secret: secretKey }));
 
     require("./passport")(app);
     app.use("/static", express.static(`${config.path.rootPath}/public`));

@@ -1,0 +1,19 @@
+extends _layout
+block site-title
+	| Home Page
+block style
+	link(rel="stylesheet" href="/static/css/user-home.css")
+	link(rel="stylesheet" href="/static/css/about.css")
+block container
+	main(id="main")
+		ul.team-container.row.col-sm-12
+			each member in team
+				li.member.row.col-sm-4.col-sm-offset-1
+					h3.member-name #{member.name} 
+					div.image-container.col-sm-5
+						img.member-image(src=member.image)
+					div.links.col-sm-5.col-sm-offset-2
+						div.telerik
+							a(href=member.telerikAccount) Profile in Telerik
+						div.github
+							a(href=member.githubAccount) Profile in Github

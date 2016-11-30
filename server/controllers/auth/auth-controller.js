@@ -94,6 +94,12 @@ module.exports = {
             res.render("update-details", { user });
         }
     },
+    about(req, res, next) {
+        let team = dataController.team,
+            user = req.user;
+
+        res.render("about", { user, team });
+    },
     logout(req, res) {
         req.logout();
 

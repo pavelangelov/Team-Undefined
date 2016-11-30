@@ -9,10 +9,12 @@ let rootPath = path.normalize(path.join(__dirname, "/../../"));
 module.exports = {
     development: {
         db: "mongodb://localhost:27017/test-db",
-        port: developmentPort
+        port: developmentPort,
+        secret: "secret_key"
     },
-    production: {
+
+    /* production: {
         // db: process.env.MONGO_DB_CONN_STRING,
-    },
+    },*/
     path: { rootPath }
 };
