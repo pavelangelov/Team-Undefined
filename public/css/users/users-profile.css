@@ -1,0 +1,13 @@
+.user-info {
+    background-color: #ccc;
+    color: #37003C;
+}
+
+.information {
+    list-style-type: none;
+}
+
+.information li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}

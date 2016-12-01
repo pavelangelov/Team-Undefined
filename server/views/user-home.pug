@@ -11,7 +11,7 @@ block container
                     header(class="row")
                         img(src=post.image alt="" class="user-image col-sm-6")
                         div(class="username col-sm-5")
-                            a(href="#") #{post.author}
+                            a(href=`/users/${post.author}/profile`) #{post.author}
                     div(class="post-content row col-sm-11 col-sm-offset-1")
                         p #{post.content}
                     div(class="post-buttons row col-sm-12")

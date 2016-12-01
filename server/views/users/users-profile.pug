@@ -1,0 +1,32 @@
+extends ../_layout
+block site-title
+    | User-Profile
+block style
+    link(rel="stylesheet" href="/static/css/users/users-profile.css")
+block container
+    div.col-sm-5.col-sm-offset-3.user-info
+        img.profile-picture.col-sm-4(src=pageOwner.image)
+        ul.information.col-sm-7
+            li.row
+                div.left.col-sm-6
+                    | Username:
+                div.right.col-sm-6
+                    | #{pageOwner.username}
+            li.row
+                div.left.col-sm-6
+                    | Name:
+                div.right.col-sm-6
+                    | #{pageOwner.firstname} #{pageOwner.lastname}
+            li.row
+                div.left.col-sm-6
+                    | About me:
+                div.right.col-sm-6
+                    if pageOwner.aboutMe
+                        | #{pageOwner.aboutMe}
+                    else
+                        | No information.
+        if pageOwner.isFriend
+            a.btn.btn-primary(href="#") Leave Message
+            a.btn.btn-primary(href="#") Create Post
+        else if !user.isAnonymous
+            a.btn.btn-primary(href="#") Send Friendship Request

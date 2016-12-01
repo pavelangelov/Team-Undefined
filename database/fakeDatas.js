@@ -97,6 +97,48 @@ const users = [
         githubAccount: "https://github.com/emilrr",
         isTeamMember: true,
         friends: []
+    },
+    {
+        _id: "qqwweerrssaa",
+        username: "pesho",
+        firstname: "Pesho",
+        lastname: "Peshev",
+        image: "/static/images/pesho.jpg"
+    },
+    {
+        _id: "mmddvvjjddww",
+        username: "gosho",
+        firstname: "Gosho",
+        lastname: "Goshev",
+        image: "/static/images/gosho.jpg"
+    },
+    {
+        _id: "ppllkkddffgg",
+        username: "tosho",
+        firstname: "Tosho",
+        lastname: "Toshev",
+        image: "/static/images/tosho.jpg"
+    },
+    {
+        _id: "wwrrmmnnbbff",
+        username: "kiro",
+        firstname: "Kiro",
+        lastname: "Kirov",
+        image: "/static/images/kiro.png"
+    },
+    {
+        _id: "aawwqqeegghh",
+        username: "marko",
+        firstname: "Marko",
+        lastname: "Markov",
+        image: "/static/images/marko.png"
+    },
+    {
+        _id: "ooiiuuyyttdd",
+        username: "petko",
+        firstname: "Petko",
+        lastname: "Petkov",
+        image: "/static/images/petko.png"
     }
 ];
 

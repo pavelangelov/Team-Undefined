@@ -5,14 +5,24 @@ const passport = require("passport"),
 
 module.exports = {
     userProfile(req, res, next) {
+        let otherUsername = req.params.username;
+
         if (!req.isAuthenticated()) {
-            dataController.users.getAnonymousUser()
-                .then(user => {
-                    res.render("users/user-profile", { user });
-                });
+            Promise.all([dataController.users.getAnonymousUser(), dataController.users.getUserByUsername(otherUsername)])
+            .then(([user, pageOwner]) => {
+                res.render("users/users-profile", { user, pageOwner });
+            })
+            .catch(err => console.log(err));
         } else {
             let user = req.user;
-            res.render("users/user-profile", { user });
+            dataController.users.getUserByUsername(otherUsername)
+                .then(otherUser => {
+                    if (user.friends.some(x => x._id === otherUser._id)) {
+                        otherUser.isFriend = true;
+                    }
+
+                    res.render("users/users-profile", { user, pageOwner: otherUser });
+                });
         }
     }
 };
