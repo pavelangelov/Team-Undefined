@@ -1,28 +1,37 @@
 "use strict";
 
 let User = require("../../models/user-model");
-const db = require("../../../database/fakeDatas");
+const db = require("../../../database/fakeDatas"),
+    defaultUserImage = "/static/images/pesho.jpg";
 
 module.exports = {
     createUser(user) {
-        let newUser = new User({
-            email: user.email,
-            firstname: user.firstname,
-            lastname: user.lastname,
-            password: user.password
-        });
-
-        return Promise.resolve()
-            .then(() => {
-                return "<h1>Save user is not implemented</h2>";
-                // newUser.save((err, user) => {
-                //     if (err) {
-                //         return console.log(err);
-                //     }
-
-                //     console.log("User saved!");
-                // });
+        // check if the username already exist
+        if (db.users.some(x => x.username === user.username)) {
+            return Promise.reject("This username already exist!");
+        } else {
+            let newUser = new User({
+                username: user.username,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                password: user.password,
+                image: defaultUserImage
             });
+
+            db.users.push(newUser);
+
+            return Promise.resolve()
+                .then(() => {
+                    return newUser;
+                    // newUser.save((err, user) => {
+                    //     if (err) {
+                    //         return console.log(err);
+                    //     }
+
+                    //     console.log("User saved!");
+                    // });
+                });
+        }
     },
     updateUser(user, newPassword) {
         // TODO: Update user details

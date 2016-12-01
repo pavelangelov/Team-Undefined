@@ -7,11 +7,15 @@ module.exports = (passport, data) => {
         // Update user validation
         data.users.getUserByUsername(username, password)
             .then(user => {
-                if (user) {
-                    return done(null, user);
+                if (!user) {
+                    return done(null, false, { message: "Incorrect username." });
                 }
 
-                return done(null, false);
+                if (user.password !== password) {
+                    return done(null, false, { message: "Incorrect password." });
+                }
+
+                return done(null, user);
             })
             .catch(error => done(error, false));
     });

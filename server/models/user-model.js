@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 let requiredValidationMessage = "{PATH} is required";
 
 let userSchema = new mongoose.Schema({
-    email: { type: String },
+    username: { type: String },
     password: { type: String },
     firstname: { type: String },
     lastname: { type: String },

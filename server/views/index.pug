@@ -12,7 +12,7 @@ html(lang="en")
             h1(class="col-sm-6") Wellcome to Ninja`s Social Network
             div(id="login-form" class=" col-sm-3 col-sm-offset-2")
                 form(method="post" action="/login" class="form-horizontal")
-                    label(for="email") Email
+                    label(for="email") Email / Username
                     input(type="text" id="email" name="username" class="form-control")
                     label(for="email") Password
                     input(type="password" id="password" name="password" class="form-control")
@@ -20,8 +20,8 @@ html(lang="en")
         main(id="main" class="row")
             div(id="register-form" class="col-sm-5 col-md-offset-3")
                 form(method="post" action="/register" class="form-horizontal")
-                    label(for="email") Email
-                    input(type="text" name="email" class="email form-control")
+                    label(for="username") Email / Username
+                    input(type="text" name="username" class="username form-control")
                     label(for="email") Password
                     input(type="password" name="password" class="password form-control")
                     label(for="email") Firstname
