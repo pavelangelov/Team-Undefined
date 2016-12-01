@@ -10,10 +10,6 @@ ul {
     display: inline-block;
 }
 
-#list {
-    margin-top: 200px;
-}
-
 .leftOption {
     float: left;
 }

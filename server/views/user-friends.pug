@@ -2,15 +2,13 @@ extends _layout
 block site-title
     | Friends
 block style
-    link(rel="stylesheet" href="/static/css/user-home.css")
     link(rel="stylesheet" href="/static/css/user-friends.css")
-
 block container
-     div(class="row col-sm-12 col-sm-offset-1")
+     div(class="row col-sm-9 col-sm-offset-1")
         ul(id="list")
             if friends.length
                 each friend in friends
                     li(class="friend row")
-                            img(src=friend.image alt="" class="col-sm-1")
+                            img(src=friend.image alt="" class="col-sm-2")
                             a(href="/users/" + friend.username + "/profile" class="btn btn-primary col-sm-2") #{friend.username}
 
