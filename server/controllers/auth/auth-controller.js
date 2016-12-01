@@ -52,7 +52,10 @@ module.exports = {
         }
 
         let user = req.user;
-        res.render("user-messages", { user, messages: user.messages });
+        dataController.messages.getUserMessages(user._id)
+            .then(messages => {
+                res.render("user-messages", { user, messages });
+            });
     },
     profile(req, res, next) {
         if (!req.isAuthenticated()) {
@@ -95,10 +98,11 @@ module.exports = {
         }
     },
     about(req, res, next) {
-        let team = dataController.team,
-            user = req.user;
-
-        res.render("about", { user, team });
+        let user = req.user;
+        dataController.users.getTeamMembers()
+            .then(team => {
+                res.render("about", { user, team });
+            });
     },
     logout(req, res) {
         req.logout();

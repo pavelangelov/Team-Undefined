@@ -55,5 +55,13 @@ module.exports = {
             .then(() => {
                 return user;
             });
+    },
+    getTeamMembers() {
+        let team = db.users.filter(x => x.isTeamMember === true);
+
+        return Promise.resolve()
+            .then(() => {
+                return team;
+            });
     }
 };
