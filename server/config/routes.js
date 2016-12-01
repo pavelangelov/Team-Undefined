@@ -1,7 +1,8 @@
 "use strict";
 
 const router = require("express").Router(),
-    auth = require("../controllers/auth/auth-controller");
+    authController = require("../controllers/page-controllers/auth-controller"),
+    usersController = require("../controllers/page-controllers/users-controller");
 // let User = require("../models/user-model");
 
 module.exports = (app) => {
@@ -12,16 +13,17 @@ module.exports = (app) => {
             res.render("index");
         }
     })
-        .post("/login", auth.login)
-        .get("/home", auth.home)
-        .post("/register", auth.register)
-        .get("/messages", auth.messages)
-        .get("/profile", auth.profile)
-        .get("/update-details", auth.getUpdateUser)
-        .post("/update-details", auth.updateUser)
-        .get("/friends", auth.friends)
-        .get("/logout", auth.logout)
-        .get("/about", auth.about)
+        .post("/login", authController.login)
+        .get("/home", authController.home)
+        .post("/register", authController.register)
+        .get("/messages", authController.messages)
+        .get("/profile", authController.profile)
+        .get("/update-details", authController.getUpdateUser)
+        .post("/update-details", authController.updateUser)
+        .get("/friends", authController.friends)
+        .get("/logout", authController.logout)
+        .get("/about", authController.about)
+        .get("/users/:username/profile", usersController.userProfile)
         .all("*", (req, res) => {
             res.status(404);
             res.send("Not Found");

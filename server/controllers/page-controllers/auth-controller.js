@@ -5,7 +5,7 @@ const passport = require("passport"),
 
 module.exports = {
     login(req, res, next) {
-        const auth = passport.authenticate("local", (err, user) => {
+        const auth = passport.authenticate("local", (err, user, info) => {
             if (err) {
                 return next(err);
             }
@@ -13,14 +13,14 @@ module.exports = {
             if (user) {
                 req.login(user, (error) => {
                     if (error) {
-                        return res.json(err);
+                        return res.json(error);
                     }
 
                     return res.redirect("/home");
                 });
             } else {
                 res.status(404)
-                    .send("<h2>This user not Exist</h2>");
+                    .send(`<h2>${info.message}</h2><a href="/"> Go back<a/>`);
             }
         });
 
@@ -29,9 +29,11 @@ module.exports = {
     register(req, res, next) {
         let user = req.body;
 
-        dataController.users.createUser(user).then((newUser) => {
-            res.send(newUser);
-        });
+        dataController.users.createUser(user)
+            .then((newUser) => {
+                res.send(newUser);
+            })
+            .catch(err => res.send(err));
         // TODO: check all value and escape bad symbols
         // res.send({ email, password, firstname, lastname });
     },

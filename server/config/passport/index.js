@@ -9,13 +9,13 @@ require("./local-strategy")(passport, data);
 passport.serializeUser((user, done) => {
     // minimalistic example - serialize the user id in the session
     if (user) {
-        done(null, user._id);
+        done(null, user.username);
     }
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((username, done) => {
     // use the id serialized in the session to retrieve the use from the database
-    data.users.getUserById(id)
+    data.users.getUserByUsername(username)
         .then(user => {
             if (user) {
                 return done(null, user);
