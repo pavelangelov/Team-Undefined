@@ -17,16 +17,27 @@ html(lang="en")
                     div(class="row")
                         div(class="user-image col-sm-1 col-sm-offset-8")
                             img(src=user.image alt="" class="profile-picture")
-                        a(href="/profile" class="username col-sm-3") #{user.username}
+                        if !user.isAnonymous
+                            a(href="/profile" class="username col-sm-3") #{user.username}
+                        else
+                            span.username.col-sm-3 #{user.username}
             nav(id="nav")
                 ul(id="nav-list" class="row")
-                    li(class="nav-list-item col-sm-3")
-                        a(href="/friends") Friends
-                    li(class="nav-list-item col-sm-3")
-                        a(href="/messages") Messages
-                    li(class="nav-list-item col-sm-3")
-                        a(href="/about") About us
-                    li(class="nav-list-item col-sm-3")
-                        a(href="/logout") Logout
+                    if !user.isAnonymous
+                        li(class="nav-list-item col-sm-3")
+                            a(href="/friends") Friends
+                        li(class="nav-list-item col-sm-3")
+                            a(href="/messages") Messages
+                        li(class="nav-list-item col-sm-3")
+                            a(href="/about") About us
+                        li(class="nav-list-item col-sm-3")
+                            a(href="/logout") Logout
+                    else
+                        li(class="nav-list-item col-sm-4")
+                            a(href="/users") Search people
+                        li(class="nav-list-item col-sm-4")
+                            a(href="/about") About us
+                        li(class="nav-list-item col-sm-4")
+                            a(href="/") Login or Register
     #container
         block container

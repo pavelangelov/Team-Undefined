@@ -9,7 +9,7 @@ block container
 		ul.team-container.row.col-sm-12
 			each member in team
 				li.member.row.col-sm-4.col-sm-offset-1
-					h3.member-name #{member.name} 
+					h3.member-name #{member.firstname} #{member.lastname} 
 					div.image-container.col-sm-5
 						img.member-image(src=member.image)
 					div.links.col-sm-5.col-sm-offset-2
