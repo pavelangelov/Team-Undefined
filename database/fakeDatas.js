@@ -75,7 +75,7 @@ const users = [
         friends: []
     },
     {
-        _id: "zzwwvvagddyy",
+        _id: "zzwwvvagssyy",
         username: "ivaylo",
         password: "newpass",
         firstname: "Ivaylo",
@@ -87,7 +87,7 @@ const users = [
         friends: []
     },
     {
-        _id: "zzwwvvagddyy",
+        _id: "zzwwvvagrryy",
         username: "emil",
         password: "newpass",
         firstname: "Emil",
