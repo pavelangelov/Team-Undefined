@@ -18,8 +18,7 @@ module.exports = {
 
                     return res.redirect("/home");
                 });
-            }
-            else {
+            } else {
                 res.status(404)
                     .send("<h2>This user not Exist</h2>");
             }
