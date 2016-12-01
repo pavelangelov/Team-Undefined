@@ -8,7 +8,7 @@ block style
 block container
      div(class="row col-sm-12 col-sm-offset-1")
         ul(id="list")
-            if friends && friends.length
+            if friends.length
                 each friend in friends
                     li(class="friend row")
                             img(src=friend.image alt="" class="col-sm-1")
