@@ -63,5 +63,13 @@ module.exports = {
             .then(() => {
                 return team;
             });
+    },
+    getAnonymousUser() {
+        let user = db.anonymousUser;
+
+        return Promise.resolve()
+            .then(() => {
+                return user;
+            });
     }
 };

@@ -1,5 +1,11 @@
 "use strict";
 
+const anonymousUser = {
+    username: "Anonymous",
+    image: "/static/images/pesho.jpg",
+    isAnonymous: true
+};
+
 const users = [
     {
         _id: "aabbvvggddee",
@@ -266,5 +272,6 @@ const posts = [
 module.exports = {
     users,
     messages,
-    posts
+    posts,
+    anonymousUser
 };

@@ -6,7 +6,11 @@ const router = require("express").Router(),
 
 module.exports = (app) => {
     router.get("/", (req, res) => {
-        res.render("index");
+        if (req.user) {
+            res.redirect("/home");
+        } else {
+            res.render("index");
+        }
     })
         .post("/login", auth.login)
         .get("/home", auth.home)

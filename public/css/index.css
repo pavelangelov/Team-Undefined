@@ -46,3 +46,12 @@ background-attachment: fixed;
     background-color: #05F1FF;
     color: #37003C;
 }
+
+.anonymous-enter {
+    color: #fff;
+    font-size: 15px;
+}
+
+.anonymous-enter:hover {
+    color: #05F1FF;
+}

@@ -20,7 +20,8 @@ module.exports = {
                 });
             }
             else {
-                res.status(404).send("<h2>This user not Exist</h2>");
+                res.status(404)
+                    .send("<h2>This user not Exist</h2>");
             }
         });
 
@@ -37,18 +38,22 @@ module.exports = {
     },
     home(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            dataController.users.getAnonymousUser()
+                .then(user => {
+                    let posts = [];
+                    res.render("user-home", { user, posts });
+                });
+        } else {
+            let user = req.user;
+            dataController.posts.getPostsByUserId(user._id)
+                .then(posts => {
+                    res.render("user-home", { user, posts });
+                });
         }
-
-        let user = req.user;
-        dataController.posts.getPostsByUserId(user._id)
-            .then(posts => {
-                res.render("user-home", { user, posts });
-            });
     },
     messages(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            return res.redirect("/");
         }
 
         let user = req.user;
@@ -59,7 +64,7 @@ module.exports = {
     },
     profile(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            return res.redirect("/");
         }
 
         let user = req.user;
@@ -67,7 +72,7 @@ module.exports = {
     },
     friends(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            return res.redirect("/");
         }
 
         let user = req.user;
@@ -75,7 +80,7 @@ module.exports = {
     },
     getUpdateUser(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            return res.redirect("/");
         }
 
         let user = req.user;
@@ -83,7 +88,7 @@ module.exports = {
     },
     updateUser(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.send("<h2>No authentication</h2>");
+            return res.redirect("/");
         }
 
         let user = req.user,
@@ -98,11 +103,21 @@ module.exports = {
         }
     },
     about(req, res, next) {
-        let user = req.user;
-        dataController.users.getTeamMembers()
-            .then(team => {
-                res.render("about", { user, team });
-            });
+        if (req.user) {
+            let user = req.user;
+            dataController.users.getTeamMembers()
+                .then(team => {
+                    res.render("about", { user, team });
+                });
+        } else {
+            dataController.users.getAnonymousUser()
+                .then(user => {
+                    dataController.users.getTeamMembers()
+                        .then(team => {
+                            res.render("about", { user, team });
+                        });
+                });
+        }
     },
     logout(req, res) {
         req.logout();
