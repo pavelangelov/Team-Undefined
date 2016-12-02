@@ -4,7 +4,7 @@ block site-title
 block style
     link(rel="stylesheet" href="/static/css/user-profile.css")
 block container
-    div(class="leftOption row col-sm-6 col-sm-3")
+    div(class="leftOption row col-sm-3")
         ul(id="listOfOption")
             li(class="post col-sm-10 col-sm-offset-1")
                 a(href="#" class="btn btn-primary col-sm-10") Address
@@ -14,8 +14,18 @@ block container
                 a(href="#" class="btn btn-primary col-sm-10") Relationship
             li(class="post col-sm-10 col-sm-offset-1")
                 a(href="/update-details" class="btn btn-primary col-sm-10") Update profile
+        if user.requests.length
+            ul.requets
+                each request in user.requests
+                    li.post.col-sm-12
+                        form(action=`/confirm-request/${request._id}` method="POST")
+                            a(href=`/users/${request.requestUser}/profile`) #{request.requestUserFullname}
+                            img(src=request.requestUserImage alt="" class="col-sm-2")
+                            input(type="submit" class="btn btn-primary" value="Confirm Friendship")
+        else
+            div | No unconfirmed Friendship requets
                 
-    div(class="row col-sm-6" )
+    div(class="row col-sm-5 col-sm-offset-1" )
         header(class="row")
             img(src= user.image alt="" class="col-sm-6")
             div(class="post username col-sm-5")
@@ -26,7 +36,7 @@ block container
         div(class="post row col-sm-11")
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
     
-    div(class="rigthOption row col-sm-6 col-sm-3")
+    div(class="rigthOption row col-sm-3")
         div(class="post")
             p Friends
         ul(id="list")

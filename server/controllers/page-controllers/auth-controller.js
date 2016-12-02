@@ -65,11 +65,11 @@ module.exports = {
     },
     profile(req, res, next) {
         if (!req.isAuthenticated()) {
-            return res.redirect("/");
+            res.redirect("/");
+        } else {
+            let user = req.user;
+            res.render("user-profile", { user });
         }
-
-        let user = req.user;
-        res.render("user-profile", { user });
     },
     friends(req, res, next) {
         if (!req.isAuthenticated()) {

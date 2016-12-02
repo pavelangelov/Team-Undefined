@@ -18,14 +18,12 @@
 }
 
 .leftOption {
-    float: left;
 }
 
 .rigthOption {
-    float: right;
     margin-left: 100px;
 }
 
-#listOfOption {
+ul {
     list-style: none;
 }
