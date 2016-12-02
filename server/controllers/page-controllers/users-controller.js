@@ -1,44 +1,42 @@
 "use strict";
 
-const dataController = require("../database/");
+const data = require("../../../database/controllers");
 
 module.exports = {
     userProfile(req, res, next) {
         let otherUsername = req.params.username;
 
         if (!req.isAuthenticated()) {
-            Promise.all([dataController.users.getAnonymousUser(), dataController.users.getUserByUsername(otherUsername)])
-            .then(([user, pageOwner]) => {
-                res.render("users/users-profile", { user, pageOwner });
-            })
-            .catch(err => console.log(err));
+            Promise.all([data.userController.getAnonymousUser(), data.userController.getUserByUsername(otherUsername)])
+                .then(([user, pageOwner]) => {
+                    res.render("users/users-profile", { user, pageOwner });
+                })
+                .catch(err => res.json(err));
         } else {
             let user = req.user;
-            dataController.users.getUserByUsername(otherUsername)
+            data.userController.getUserByUsername(otherUsername)
                 .then(otherUser => {
                     if (user.friends.some(x => x._id === otherUser._id)) {
                         otherUser.isFriend = true;
                     }
 
                     res.render("users/users-profile", { user, pageOwner: otherUser });
-                });
+                })
+                .catch(err => res.json(err));
         }
     },
     sendUserRequest(req, res, next) {
         if (!req.isAuthenticated()) {
             res.redirect("/");
         } else {
-            dataController.users.getUserByUsername(req.params.username)
-                .then(user => {
-                    user.requests.push({
-                        _id: `${req.user.username};${req.user.firstname};${req.user.lastname}`,
-                        requestUser: req.user.username,
-                        requestUserFullname: `${req.user.firstname} ${req.user.lastname}`,
-                        requestUserImage: req.user.image
-                    });
-
-                    res.redirect("/home");
-                })
+            let request = {
+                _id: `${req.user.username};${req.user.firstname};${req.user.lastname}`,
+                requestUser: req.user.username,
+                requestUserFullname: `${req.user.firstname} ${req.user.lastname}`,
+                requestUserImage: req.user.image
+            };
+            data.userController.sendRequest(req.params.username, request)
+                .then(res.redirect("/home"))
                 .catch(err => res.json(err));
         }
     },
@@ -48,34 +46,23 @@ module.exports = {
         } else {
             let requestId = req.params.requestId,
                 otherUser = requestId.split(";")[0];
-            dataController.users.getUserByUsername(otherUser)
+
+            let self = {
+                username: req.user.username,
+                _id: req.user._id,
+                image: req.user.image
+            };
+            data.userController.addFriend(otherUser, self)
                 .then(user => {
-                    // Update this when connect the app with Database
-                    user.friends.push({
-                        username: req.user.username,
-                        _id: req.user._id,
-                        image: req.user.image
-                    });
+                    let friend = {
+                        username: user.username,
+                        _id: user._id,
+                        image: user.image
+                    };
 
-                    return user;
+                    Promise.all([data.userController.addFriend(req.user.username, friend), data.userController.removeRequest(req.user.username, requestId)])
+                        .then(res.redirect("/profile"));
                 })
-                .then(friend => {
-                    // Update this when connect the app with Database
-                    let currentUser = req.user;
-                    currentUser.friends.push({
-                        username: friend.username,
-                        _id: friend._id,
-                        image: friend.image
-                    });
-
-                    currentUser.requests.forEach((request, index) => {
-                        if (request._id === requestId) {
-                            currentUser.requests.splice(index, 1);
-                            return;
-                        }
-                    });
-                })
-                .then(res.redirect("/profile"))
                 .catch(err => res.json(err));
         }
     },

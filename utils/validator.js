@@ -5,7 +5,7 @@ const constants = {
     STRING_MAX_LENGTH: 60,
     USERNAME_MIN_LENGTH: 4,
     USERNAME_MAX_LENGTH: 20,
-    PASSWORD_MIN_LENGTH: 40,
+    PASSWORD_MIN_LENGTH: 6, // TODO: Update this when create password crypting
     BAD_SYMBOLS: ["&", "<", ">", "\"", "'", "/", "(", ")", ".", "#", "=", "@", "`", "{", "}"],
     ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#35;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
 };
@@ -58,7 +58,7 @@ module.exports = {
 
         return escapedUsername;
     },
-    replaceBadSymbols(value) {
+    escapeBadSymbols(value) {
         let escapedValue = replaceBadSymbols(value);
 
         return escapedValue;

@@ -3,11 +3,21 @@
 let requiredValidationMessage = "{PATH} is required";
 const mongoose = require("mongoose"),
     Schema = mongoose.Schema;
+let User;
 
 let userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        validate:
+        {
+            validator: (value, cb) => {
+                User.find({ name: value }, (err, docs) => {
+                    cb(docs.length === 0);
+                });
+            },
+            message: "User already exists!"
+        }
     },
     password: {
         type: String,
@@ -21,10 +31,10 @@ let userSchema = new Schema({
         type: String,
         required: true
     },
+    fullname: { type: String },
     image: { type: String },
     telerikAccount: { type: String },
     githubAccount: { type: String },
-    isTeamMember: { type: Boolean },
     requests: [
         {
             requestUser: {
@@ -56,5 +66,5 @@ let userSchema = new Schema({
 });
 
 mongoose.model("User", userSchema);
-let User = mongoose.model("User");
+User = mongoose.model("User");
 module.exports = User;

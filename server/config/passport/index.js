@@ -1,7 +1,7 @@
 "use strict";
 
 const passport = require("passport"),
-    data = require("../../controllers/database");
+    data = require("../../../database/controllers");
 
 
 require("./local-strategy")(passport, data);
@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((username, done) => {
     // use the id serialized in the session to retrieve the use from the database
-    data.users.getUserByUsername(username)
+    data.userController.getUserByUsername(username)
         .then(user => {
             if (user) {
                 return done(null, user);
