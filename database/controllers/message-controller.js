@@ -16,16 +16,17 @@ module.exports = {
         return new Promise((resolve, reject) => {
             message.save((err, msg) => {
                 if (err) {
-                    return reject(err);
+                    console.log(err);
+                    reject(err);
+                } else {
+                    resolve(msg);
                 }
-
-                return resolve(msg);
             });
         });
     },
     getUserMessages(userId) {
         return new Promise((resolve, reject) => {
-            Message.find({ "targetId": userId }, (err, messages) => {
+            Message.find({ "targetUserId": userId }, (err, messages) => {
                 if (err) {
                     return reject(err);
                 }

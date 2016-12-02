@@ -3,6 +3,7 @@
 const router = require("express").Router(),
     authController = require("../controllers/page-controllers/auth-controller"),
     usersController = require("../controllers/page-controllers/users-controller"),
+    messagesController = require("../controllers/page-controllers/messages-controller"),
     statusCodeNotFound = 404;
 // let User = require("../models/user-model");
 
@@ -27,6 +28,8 @@ module.exports = (app) => {
         .get("/users/:username/profile", usersController.userProfile)
         .get("/send-friendship-reques/:username", usersController.sendUserRequest)
         .post("/confirm-request/:requestId", usersController.confirmFriendshipRequest)
+        .get("/send-message/:username", messagesController.getAddMessagePage)
+        .post("/send-message/:username", messagesController.addMessage)
         .all("*", (req, res) => {
             res.status(statusCodeNotFound);
             res.send("Not Found");

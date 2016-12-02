@@ -16,7 +16,7 @@ module.exports = {
             let user = req.user;
             data.userController.getUserByUsername(otherUsername)
                 .then(otherUser => {
-                    if (user.friends.some(x => x._id === otherUser._id)) {
+                    if (user.friends.some(x => x._id.toString() === otherUser._id.toString())) {
                         otherUser.isFriend = true;
                     }
 
