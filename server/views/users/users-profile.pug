@@ -29,4 +29,4 @@ block container
             a.btn.btn-primary(href="#") Leave Message
             a.btn.btn-primary(href="#") Create Post
         else if !user.isAnonymous
-            a.btn.btn-primary(href="#") Send Friendship Request
+            a.btn.btn-primary(href=`/send-friendship-reques/${pageOwner.username}`) Send Friendship Request

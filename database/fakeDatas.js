@@ -17,6 +17,32 @@ const users = [
         telerikAccount: "https://telerikacademy.com/Users/p_a_v_el",
         githubAccount: "https://github.com/pavelangelov",
         isTeamMember: true,
+        requests: [
+            {
+                _id: "venko;Veselin;Krystev",
+                requestUser: "venko",
+                requestUserFullname: "Veselin Krystev",
+                requestUserImage: "https://telerikacademy.com/Content/Avatars/908/33908_ea8f69d8_180x180.jpg"
+            },
+            {
+                _id: "ivaylo;Ivaylo;Paskalev",
+                requestUser: "ivaylo",
+                requestUserFullname: "Ivaylo Paskalev",
+                requestUserImage: "https://telerikacademy.com/Content/Avatars/171/26171_0dd8fa73_180x180.jpg"
+            },
+            {
+                _id: "venelin;Venelin;Petkov",
+                requestUser: "venelin",
+                requestUserFullname: "Venelin Petkov",
+                requestUserImage: "https://telerikacademy.com/Content/Avatars/045/18045_721539aa_180x180.jpg"
+            },
+            {
+                _id: "emil;Emil;Ruzhenov",
+                requestUser: "emil",
+                requestUserFullname: "Emil Ruzhenov",
+                requestUserImage: "https://telerikacademy.com/Content/Avatars/950/34950_3dcadc58_180x180.jpg"
+            }
+        ],
         friends: [
             {
                 _id: "qqwweerrssaa",
@@ -54,12 +80,13 @@ const users = [
         _id: "zzbbvvggddyy",
         username: "venko",
         password: "newpass",
-        firstname: "Venelin",
-        lastname: "Petkov",
+        firstname: "Veselin",
+        lastname: "Krystev",
         image: "https://telerikacademy.com/Content/Avatars/908/33908_ea8f69d8_180x180.jpg",
         telerikAccount: "https://telerikacademy.com/Users/Veselin93",
         githubAccount: "https://github.com/Vekoks",
         isTeamMember: true,
+        requests: [],
         friends: []
     },
     {
@@ -72,6 +99,7 @@ const users = [
         telerikAccount: "https://telerikacademy.com/Users/venelingp",
         githubAccount: "https://github.com/VenelinGP",
         isTeamMember: true,
+        requests: [],
         friends: []
     },
     {
@@ -84,6 +112,7 @@ const users = [
         telerikAccount: "https://telerikacademy.com/Users/IvayloPaskalev",
         githubAccount: "https://github.com/IvayloPaskalev",
         isTeamMember: true,
+        requests: [],
         friends: []
     },
     {
@@ -96,6 +125,7 @@ const users = [
         telerikAccount: "https://telerikacademy.com/Users/emo_r",
         githubAccount: "https://github.com/emilrr",
         isTeamMember: true,
+        requests: [],
         friends: []
     },
     {
@@ -103,42 +133,48 @@ const users = [
         username: "pesho",
         firstname: "Pesho",
         lastname: "Peshev",
-        image: "/static/images/pesho.jpg"
+        image: "/static/images/pesho.jpg",
+        requests: []
     },
     {
         _id: "mmddvvjjddww",
         username: "gosho",
         firstname: "Gosho",
         lastname: "Goshev",
-        image: "/static/images/gosho.jpg"
+        image: "/static/images/gosho.jpg",
+        requests: []
     },
     {
         _id: "ppllkkddffgg",
         username: "tosho",
         firstname: "Tosho",
         lastname: "Toshev",
-        image: "/static/images/tosho.jpg"
+        image: "/static/images/tosho.jpg",
+        requests: []
     },
     {
         _id: "wwrrmmnnbbff",
         username: "kiro",
         firstname: "Kiro",
         lastname: "Kirov",
-        image: "/static/images/kiro.png"
+        image: "/static/images/kiro.png",
+        requests: []
     },
     {
         _id: "aawwqqeegghh",
         username: "marko",
         firstname: "Marko",
         lastname: "Markov",
-        image: "/static/images/marko.png"
+        image: "/static/images/marko.png",
+        requests: []
     },
     {
         _id: "ooiiuuyyttdd",
         username: "petko",
         firstname: "Petko",
         lastname: "Petkov",
-        image: "/static/images/petko.png"
+        image: "/static/images/petko.png",
+        requests: []
     }
 ];
 
