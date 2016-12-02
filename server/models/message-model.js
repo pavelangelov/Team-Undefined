@@ -1,14 +1,35 @@
 "use strict";
 
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
+    Schema = mongoose.Schema;
 
-let messageSchema = new mongoose.Schema({
-    author: { type: String },
-    authorId: { type: String },
-    targetUserId: { type: String },
-    image: { type: String },
-    postDate: { type: Date },
-    content: { type: String }
+let messageSchema = new Schema({
+    author: {
+        type: String,
+        required: true
+    },
+    authorId: {
+        type: String,
+        required: true
+    },
+    targetUserId: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    postDate: {
+        type: Date,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    }
 });
 
-module.exports = mongoose.model("Message", messageSchema);
+mongoose.model("Message", messageSchema);
+let Message = mongoose.model("Message");
+module.exports = Message;
