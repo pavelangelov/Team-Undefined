@@ -49,7 +49,6 @@ module.exports = {
                     if (err) {
                         return reject(err);
                     }
-
                     return resolve(dbReq);
                 });
         });

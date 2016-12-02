@@ -37,6 +37,10 @@ let userSchema = new Schema({
     githubAccount: { type: String },
     requests: [
         {
+            _id: {
+                type: String,
+                required: true
+            },
             requestUser: {
                 type: String,
                 required: true
