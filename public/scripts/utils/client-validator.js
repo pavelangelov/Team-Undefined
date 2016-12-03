@@ -9,8 +9,8 @@ const validator = (function() {
         USERNAME_MAX_LENGTH: 20,
         PASSWORD_MIN_LENGTH: 6,
         PASSWORD_MAX_LENGTH: 20,
-        BAD_SYMBOLS: ["&", "<", ">", "\"", "'", "/", "(", ")", ".", "#", "=", "@", "`", "{", "}"],
-        ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#35;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
+        BAD_SYMBOLS: ["<", ">", "\"", "'", "/", "(", ")", ".", "=", "@", "`", "{", "}"],
+        ESCAPED_SYMBOLS: ["&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
     };
 
     function validateIfUdefined(value, paramName) {

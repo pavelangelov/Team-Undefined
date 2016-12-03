@@ -50,8 +50,9 @@ $("#register-form").submit((ev) => {
                     firstname,
                     lastname
                 },
-                success: (res) => {
-                    window.location += res;
+                success: () => {
+                    alertify.success("User successfully registred!");
+                    window.location = "";
                 },
                 error: (err) => {
                     alertify.error(err.responseText);
