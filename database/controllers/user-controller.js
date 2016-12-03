@@ -42,9 +42,7 @@ module.exports = {
     },
     sendRequest(username, request) {
         return new Promise((resolve, reject) => {
-            User.findOneAndUpdate(
-                { "username": username },
-                { $push: { "requests": request } },
+            User.findOneAndUpdate({ "username": username }, { $push: { "requests": request } },
                 (err, dbReq) => {
                     if (err) {
                         return reject(err);
@@ -55,9 +53,7 @@ module.exports = {
     },
     addFriend(username, friend) {
         return new Promise((resolve, reject) => {
-            User.findOneAndUpdate(
-                { "username": username },
-                { $push: { "friends": friend } },
+            User.findOneAndUpdate({ "username": username }, { $push: { "friends": friend } },
                 (err, user) => {
                     if (err) {
                         return reject(err);
@@ -70,10 +66,7 @@ module.exports = {
     },
     removeRequest(username, requestId) {
         return new Promise((resolve, reject) => {
-            User.findOneAndUpdate(
-                { "username": username },
-                { $pull: { "requests": { "_id": requestId } } },
-                { safe: true },
+            User.findOneAndUpdate({ "username": username }, { $pull: { "requests": { "_id": requestId } } }, { safe: true },
                 (err, user) => {
                     if (err) {
                         return reject(err);
@@ -115,6 +108,35 @@ module.exports = {
                 }
 
                 return resolve(user);
+            });
+        });
+    },
+    getNonFriendsUsers(str, user) {
+        return new Promise((resolve, reject) => {
+            let userFriends = user.friends;
+            userFriends.push(user);
+            let searchedUsers = [],
+                findedUsers = [];
+            User.find((err, users) => {
+                if (err) {
+                    return reject(err);
+                }
+                userFriends.forEach((f) => {
+                    let id = f.id;
+                    users.forEach((u) => {
+                        if (u.id != id) {
+                            searchedUsers.push(u);
+                        }
+                    });
+                });
+                searchedUsers.forEach((f) => {
+                    if (f.username.indexOf(str) > -1) {
+                        findedUsers.push(f);
+                    } else if (f.fullname.indexOf(str) > -1) {
+                        findedUsers.push(f);
+                    }
+                });
+                return resolve(findedUsers);
             });
         });
     },
