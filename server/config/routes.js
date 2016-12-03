@@ -6,7 +6,6 @@ const router = require("express").Router(),
     messagesController = require("../controllers/page-controllers/messages-controller"),
     postsController = require("../controllers/page-controllers/posts-controller"),
     statusCodeNotFound = 404;
-// let User = require("../models/user-model");
 
 module.exports = (app) => {
     router.get("/", (req, res) => {
@@ -33,6 +32,8 @@ module.exports = (app) => {
         .post("/send-message/:username", messagesController.addMessage)
         .get("/create-post/:username", postsController.getCreatePost)
         .post("/create-post/:username", postsController.addPost)
+        .put("/posts/:postId/increase-likes", postsController.increasePostLikes)
+        .put("/posts/:postId/decrease-likes", postsController.decreasePostLikes)
         .all("*", (req, res) => {
             res.status(statusCodeNotFound);
             res.send("Not Found");

@@ -44,5 +44,39 @@ module.exports = {
                 return resolve(posts);
             });
         });
+    },
+    increaseLikes(postId, userId) {
+        return new Promise((resolve, reject) => {
+            Post.findOneAndUpdate({ "_id": postId },
+                {
+                    $inc: { "likes": 1 },
+                    $push: { "likesFrom": userId },
+                    $pull: { "dislikesFrom": userId }
+                },
+                (err, post) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(post);
+                });
+        });
+    },
+    decreaseLikes(postId, userId) {
+        return new Promise((resolve, reject) => {
+            Post.findOneAndUpdate({ "_id": postId },
+                {
+                    $inc: { "likes": -1 },
+                    $push: { "dislikesFrom": userId },
+                    $pull: { "likesFrom": userId }
+                },
+                (err, post) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(post);
+                });
+        });
     }
 };

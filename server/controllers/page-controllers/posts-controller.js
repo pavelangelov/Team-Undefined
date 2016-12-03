@@ -1,9 +1,10 @@
 "use strict";
 
-const data = require("../../../database/controllers");
+const data = require("../../../database/controllers"),
+    statusCodes = require("../status-codes");
 
 module.exports = {
-    getCreatePost(req, res, next) {
+    getCreatePost(req, res) {
         if (!req.isAuthenticated()) {
             return res.redirect("/");
         }
@@ -14,7 +15,7 @@ module.exports = {
             })
             .catch(err => res.json(err));
     },
-    addPost(req, res, next) {
+    addPost(req, res) {
         if (!req.isAuthenticated()) {
             return res.redirect("/");
         }
@@ -32,5 +33,27 @@ module.exports = {
         data.postController.createPost(postLikeObj)
             .then(res.redirect("/home"))
             .catch(err => res.json(err));
+    },
+    increasePostLikes(req, res) {
+        let postId = req.params.postId,
+            userId = req.user._id;
+
+        data.postController.increaseLikes(postId, userId)
+            .then(post => {
+                res.status(statusCodes.OK.code)
+                    .send(`${post.likes + 1}`);
+            })
+            .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));
+    },
+    decreasePostLikes(req, res) {
+        let postId = req.params.postId,
+            userId = req.user._id;
+
+        data.postController.decreaseLikes(postId, userId)
+            .then(post => {
+                res.status(statusCodes.OK.code)
+                    .send(`${post.likes - 1}`);
+            })
+            .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));
     }
 };

@@ -49,6 +49,11 @@ module.exports = {
             let user = req.user;
             data.postController.getPostsByUserId(user._id)
                 .then(posts => {
+                    posts.forEach(p => {
+                        if (p.likesFrom.some(l => l.toString() === user._id.toString())) {
+                            p.isLiked = true;
+                        }
+                    });
                     res.render("user-home", { user, posts });
                 })
                 .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));
