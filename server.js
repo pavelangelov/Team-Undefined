@@ -8,7 +8,7 @@ const app = express();
 let port = process.env.PORT || config.development.port;
 let env = require("./server/config/config")["development"];
 
-// require("./server/config/database")(env);
+require("./server/config/database")(env);
 require("./server/config/express")(config, app);
 require("./server/config/routes")(app);
 

@@ -24,7 +24,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05f1ff', end
     font-size: 18px;
 }
 
-#login-form a.btn {
+#login-form-container a.btn {
     background-color: #37003C;
 }
 
@@ -37,12 +37,12 @@ background: linear-gradient(135deg,  #37003c 0%,#6b476d 88%); /* W3C, IE10+, FF1
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37003c', endColorstr='#6b476d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 background-attachment: fixed;
 }
-#register-form {
+#register-form-container {
     color: #05F1FF;
     font-family: 'Comic Sans MS';
 }
 
-#register-form a.btn {
+#register-form-container a.btn {
     background-color: #05F1FF;
     color: #37003C;
 }

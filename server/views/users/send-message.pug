@@ -1,0 +1,8 @@
+extends ../_layout
+block site-title
+    | Send-message
+block container
+    form.row.col-sm-6.col-sm-offset-3(action=`/send-message/${reciever.username}` method="POST")
+        textarea.form-control(rows="4" cols="50" name="content")
+        input(type="hidden" name="id" value=`${reciever._id}`)
+        input.btn.btn-primary.form-control(type="submit" value="Submit Message")

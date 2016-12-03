@@ -1,5 +1,49 @@
 "use strict";
 
+const teamMembers = [
+    {
+        firstname: "Pavel",
+        lastname: "Angelov",
+        image: "https://telerikacademy.com/Content/Avatars/936/37936_083e8ae3_180x180.jpg",
+        telerikAccount: "https://telerikacademy.com/Users/p_a_v_el",
+        githubAccount: "https://github.com/pavelangelov",
+        isTeamMember: true
+    },
+    {
+        firstname: "Veselin",
+        lastname: "Krystev",
+        image: "https://telerikacademy.com/Content/Avatars/908/33908_ea8f69d8_180x180.jpg",
+        telerikAccount: "https://telerikacademy.com/Users/Veselin93",
+        githubAccount: "https://github.com/Vekoks",
+        isTeamMember: true
+    },
+    {
+        password: "newpass",
+        firstname: "Venelin",
+        lastname: "Petkov",
+        image: "https://telerikacademy.com/Content/Avatars/045/18045_721539aa_180x180.jpg",
+        telerikAccount: "https://telerikacademy.com/Users/venelingp",
+        githubAccount: "https://github.com/VenelinGP",
+        isTeamMember: true
+    },
+    {
+        firstname: "Ivaylo",
+        lastname: "Paskalev",
+        image: "https://telerikacademy.com/Content/Avatars/171/26171_0dd8fa73_180x180.jpg",
+        telerikAccount: "https://telerikacademy.com/Users/IvayloPaskalev",
+        githubAccount: "https://github.com/IvayloPaskalev",
+        isTeamMember: true
+    },
+    {
+        firstname: "Emil",
+        lastname: "Ruzhenov",
+        image: "https://telerikacademy.com/Content/Avatars/950/34950_3dcadc58_180x180.jpg",
+        telerikAccount: "https://telerikacademy.com/Users/emo_r",
+        githubAccount: "https://github.com/emilrr",
+        isTeamMember: true
+    }
+];
+
 const anonymousUser = {
     username: "Anonymous",
     image: "/static/images/pesho.jpg",
@@ -348,8 +392,6 @@ const posts = [
 ];
 
 module.exports = {
-    users,
-    messages,
-    posts,
-    anonymousUser
+    anonymousUser,
+    teamMembers
 };

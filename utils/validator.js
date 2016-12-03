@@ -6,6 +6,7 @@ const constants = {
     USERNAME_MIN_LENGTH: 4,
     USERNAME_MAX_LENGTH: 20,
     PASSWORD_MIN_LENGTH: 40,
+    PASSWORD_MAX_LENGTH: 100,
     BAD_SYMBOLS: ["&", "<", ">", "\"", "'", "/", "(", ")", ".", "#", "=", "@", "`", "{", "}"],
     ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#35;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
 };
@@ -24,7 +25,7 @@ function validateStringLength(value, paramName, minLength, maxLength) {
     validateIfUdefined(value, paramName);
 
     if (value.length < minLength || maxLength < value.length) {
-        throw new Error(`${paramName} must be between {minLength} and {maxLength} symbols long!`);
+        throw new Error(`${paramName} must be between ${minLength} and ${maxLength} symbols long!`);
     }
 }
 
@@ -58,13 +59,13 @@ module.exports = {
 
         return escapedUsername;
     },
-    replaceBadSymbols(value) {
+    escapeBadSymbols(value) {
         let escapedValue = replaceBadSymbols(value);
 
         return escapedValue;
     },
     validatePassword(password) {
-        validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH);
+        validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH, constants.PASSWORD_MAX_LENGTH);
 
         let escapedPassword = replaceBadSymbols(password);
 
