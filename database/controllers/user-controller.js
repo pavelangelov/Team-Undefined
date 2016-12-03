@@ -7,8 +7,8 @@ let User = require("../models").User,
 
 module.exports = {
     createUser(user) {
-        user.username = validator.validateUsername(user.username);
-        user.password = validator.validatePassword(user.password);
+        validator.validateUsername(user.username);
+        validator.validatePassword(user.password);
 
         let newUser = new User({
             username: user.username,
@@ -100,7 +100,6 @@ module.exports = {
         });
     },
     getUserByUsername(username) {
-        username = validator.escapeBadSymbols(username);
         return new Promise((resolve, reject) => {
             User.findOne({ "username": username }, (err, user) => {
                 if (err) {

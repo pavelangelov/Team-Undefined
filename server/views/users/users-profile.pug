@@ -27,6 +27,6 @@ block container
                         | No information.
         if pageOwner.isFriend
             a.btn.btn-primary(href=`/send-message/${pageOwner.username}`) Leave Message
-            a.btn.btn-primary(href="#") Create Post
+            a.btn.btn-primary(href=`/create-post/${pageOwner.username}`) Create Post
         else if !user.isAnonymous
             a.btn.btn-primary(href=`/send-friendship-reques/${pageOwner.username}`) Send Friendship Request

@@ -1,7 +1,8 @@
 "use strict";
 
 const passport = require("passport"),
-    data = require("../../../database/controllers");
+    data = require("../../../database/controllers"),
+    statusCodes = require("../status-codes");
 
 module.exports = {
     login(req, res, next) {
@@ -16,11 +17,11 @@ module.exports = {
                         return res.json(error);
                     }
 
-                    return res.status(200)
+                    return res.status(statusCodes.OK.code)
                         .send("home");
                 });
             } else {
-                res.status(404)
+                res.status(statusCodes.NotFound.code)
                     .send(`${info.message}`);
             }
         });
@@ -32,10 +33,10 @@ module.exports = {
 
         data.userController.createUser(user)
             .then(() => {
-                res.status(201)
+                res.status(statusCodes.Created.code)
                     .send("");
             })
-            .catch(err => res.status(404).send(err.message));
+            .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));
     },
     home(req, res, next) {
         if (!req.isAuthenticated()) {
@@ -48,9 +49,14 @@ module.exports = {
             let user = req.user;
             data.postController.getPostsByUserId(user._id)
                 .then(posts => {
+                    posts.forEach(p => {
+                        if (p.likesFrom.some(l => l.toString() === user._id.toString())) {
+                            p.isLiked = true;
+                        }
+                    });
                     res.render("user-home", { user, posts });
                 })
-                .catch(err => res.json(err));
+                .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));
         }
     },
     messages(req, res, next) {

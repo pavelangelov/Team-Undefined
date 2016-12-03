@@ -7,8 +7,8 @@ const constants = {
     USERNAME_MAX_LENGTH: 20,
     PASSWORD_MIN_LENGTH: 40,
     PASSWORD_MAX_LENGTH: 100,
-    BAD_SYMBOLS: ["&", "<", ">", "\"", "'", "/", "(", ")", ".", "#", "=", "@", "`", "{", "}"],
-    ESCAPED_SYMBOLS: ["&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#46;", "&#35;", "&#61;", "&#64;", "&#96;", "&#123;", "&#125;"]
+    BAD_SYMBOLS: ["<", ">", "\"", "'", "/", "(", ")", ".", "=", "`", "{", "}"],
+    ESCAPED_SYMBOLS: ["&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#40;", "&#41;", "&#61;", "&#96;", "&#123;", "&#125;"]
 };
 
 function validateIfUdefined(value, paramName) {
@@ -55,9 +55,6 @@ module.exports = {
     validateUsername(username) {
         validateStringLength(username, "Username", constants.USERNAME_MIN_LENGTH, constants.USERNAME_MAX_LENGTH);
 
-        let escapedUsername = replaceBadSymbols(username);
-
-        return escapedUsername;
     },
     escapeBadSymbols(value) {
         let escapedValue = replaceBadSymbols(value);
@@ -67,8 +64,5 @@ module.exports = {
     validatePassword(password) {
         validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH, constants.PASSWORD_MAX_LENGTH);
 
-        let escapedPassword = replaceBadSymbols(password);
-
-        return escapedPassword;
     }
 };
