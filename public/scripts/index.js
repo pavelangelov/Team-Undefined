@@ -8,13 +8,13 @@ $("#login-form").submit((ev) => {
         password = $("#login-password").val();
 
     validator.validateCredentials(username, password)
-        .then(credentials => {
-            let hashPasword = CryptoJS.SHA256(credentials.password).toString();
+        .then(() => {
+            let hashPasword = CryptoJS.SHA256(password).toString();
             $.ajax({
                 url: "/login",
                 method: "POST",
                 data: {
-                    username: credentials.username,
+                    username,
                     password: hashPasword
                 },
                 success: (res) => {
@@ -36,11 +36,11 @@ $("#register-form").submit((ev) => {
         lastname = $("#register-lastname").val();
 
     validator.validateCredentials(username, password)
-        .then(credentials => {
+        .then(() => {
             validator.validateName(firstname, "Firstname");
             validator.validateName(lastname, "Lastname");
 
-            let hashPasword = CryptoJS.SHA256(credentials.password).toString();
+            let hashPasword = CryptoJS.SHA256(password).toString();
             $.ajax({
                 url: "/register",
                 method: "POST",
