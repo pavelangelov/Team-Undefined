@@ -36,8 +36,6 @@ module.exports = {
                     .send("");
             })
             .catch(err => res.status(404).send(err.message));
-        // TODO: check all value and escape bad symbols
-        // res.send({ email, password, firstname, lastname });
     },
     home(req, res, next) {
         if (!req.isAuthenticated()) {
