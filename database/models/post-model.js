@@ -25,7 +25,9 @@ let postSchema = new Schema({
     content: {
         type: String,
         required: true
-    }
+    },
+    likesFrom: [String],
+    dislikesFrom: [String]
 });
 
 mongoose.model("Post", postSchema);

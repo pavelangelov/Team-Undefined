@@ -24,3 +24,7 @@
 .post .likes span {
     color: darkblue;
 }
+
+.hidden {
+    display: none;
+}
