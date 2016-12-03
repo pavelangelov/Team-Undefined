@@ -6,28 +6,33 @@ html(lang="en")
         link(rel="stylesheet" href="/static/css/index.css")
         link(href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet")
         link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+        script(src="/static/bower_components/jquery/dist/jquery.min.js")
+        script(src="/static/bower_components/crypto-js/crypto-js.js")
+        script(src="/static/bower_components/crypto-js/sha256.js")
 
     body
         header(id="header" class="row")
             h1(class="col-sm-6") Wellcome to Ninja`s Social Network
-            div(id="login-form" class=" col-sm-3 col-sm-offset-2")
-                form(method="post" action="/login" class="form-horizontal")
+            div(id="login-form-container" class=" col-sm-3 col-sm-offset-2")
+                form(id="login-form" method="post" action="/login" class="form-horizontal")
                     label(for="email") Email / Username
-                    input(type="text" id="email" name="username" class="form-control")
+                    input(type="text" id="login-username" name="username" class="form-control")
                     label(for="email") Password
-                    input(type="password" id="password" name="password" class="form-control")
-                    input(type="submit" class="btn btn-primary form-control" value="Log in")
+                    input(type="password" id="login-password" name="password" class="form-control")
+                    input(type="submit" id="login" class="btn btn-primary form-control" value="Log in")
         main(id="main" class="row")
-            div(id="register-form" class="col-sm-5 col-sm-offset-3")
-                form(method="post" action="/register" class="form-horizontal")
+            div(id="register-form-container" class="col-sm-5 col-sm-offset-3")
+                form(id="register-form" method="post" action="/register" class="form-horizontal")
                     label(for="username") Email / Username
-                    input(type="text" name="username" class="username form-control")
+                    input(type="text" name="username" id="register-username" class="username form-control")
                     label(for="email") Password
-                    input(type="password" name="password" class="password form-control")
+                    input(type="password" name="password" id="register-password" class="password form-control")
                     label(for="email") Firstname
-                    input(type="text" name="firstname" class="firstname form-control")
+                    input(type="text" name="firstname" id="register-firstname" class="firstname form-control")
                     label(for="email") Lastname
-                    input(type="text" name="lastname" class="lastname form-control")
+                    input(type="text" name="lastname" id="register-lastname" class="lastname form-control")
                     input(type="submit" class="btn btn-default form-control" value="Register")
             
             a.col-sm-offset-1.anonymous-enter(href="/home") Enter without having profile
+        script(src="/static/scripts/index.js")
+        script(src="/static/scripts/utils/client-validator.js")

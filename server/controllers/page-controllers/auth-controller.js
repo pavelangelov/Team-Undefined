@@ -16,7 +16,8 @@ module.exports = {
                         return res.json(error);
                     }
 
-                    return res.redirect("/home");
+                    return res.status(200)
+                                .send("home");
                 });
             } else {
                 res.status(404)
@@ -30,8 +31,9 @@ module.exports = {
         let user = req.body;
 
         data.userController.createUser(user)
-            .then((newUser) => {
-                res.send(newUser);
+            .then(() => {
+                res.status(201)
+                    .send("");
             })
             .catch(err => res.send(err));
         // TODO: check all value and escape bad symbols

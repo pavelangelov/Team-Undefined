@@ -1,5 +1,7 @@
 "use strict";
+
 const data = require("../../../database/controllers");
+
 module.exports = {
     getAddMessagePage(req, res, next) {
         if (!req.isAuthenticated()) {
