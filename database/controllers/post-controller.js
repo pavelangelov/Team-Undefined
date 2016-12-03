@@ -37,11 +37,10 @@ module.exports = {
     },
     getPostsByUserId(userId) {
         return new Promise((resolve, reject) => {
-            Post.find({ "authorId": userId, "targetUserId": userId }, (err, posts) => {
+            Post.find({ $or: [{ "authorId": userId }, { "targetUserId": userId }] }, (err, posts) => {
                 if (err) {
                     return reject(err);
                 }
-
                 return resolve(posts);
             });
         });
