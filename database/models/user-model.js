@@ -8,16 +8,7 @@ let User;
 let userSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        validate:
-        {
-            validator: (value, cb) => {
-                User.find({ name: value }, (err, docs) => {
-                    cb(docs.length === 0);
-                });
-            },
-            message: "User already exists!"
-        }
+        required: true
     },
     password: {
         type: String,
@@ -67,6 +58,21 @@ let userSchema = new Schema({
             }
         }
     ]
+});
+
+userSchema.pre("save", true, function (next, done) {
+    let self = this;
+    mongoose.models["User"].findOne({ username: self.username }, function (err, user) {
+        if (err) {
+            done(err);
+        } else if (user) {
+            self.invalidate("username", "User already exist!");
+            done(new Error("User already exist!"));
+        } else {
+            done();
+        }
+    });
+    next();
 });
 
 mongoose.model("User", userSchema);

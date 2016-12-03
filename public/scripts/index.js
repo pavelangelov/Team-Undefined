@@ -1,4 +1,4 @@
-/* globals $ window validator CryptoJS */
+/* globals $ window validator CryptoJS alertify */
 
 "use strict";
 
@@ -7,25 +7,25 @@ $("#login-form").submit((ev) => {
     let username = $("#login-username").val(),
         password = $("#login-password").val();
 
-    password = validator.validatePassword(password);
-    username = validator.validateUsername(username);
-
-    let hashPasword = CryptoJS.SHA256(password).toString();
-    $.ajax({
-        url: "/login",
-        method: "POST",
-        data: {
-            username,
-            password: hashPasword
-        },
-        success: (res) => {
-            window.location += res;
-        },
-        error: (err) => {
-            console.log("Error");
-            console.log(err);
-        }
-    });
+    validator.validateCredentials(username, password)
+        .then(credentials => {
+            let hashPasword = CryptoJS.SHA256(credentials.password).toString();
+            $.ajax({
+                url: "/login",
+                method: "POST",
+                data: {
+                    username: credentials.username,
+                    password: hashPasword
+                },
+                success: (res) => {
+                    window.location += res;
+                },
+                error: (err) => {
+                    alertify.error(err.responseText);
+                }
+            });
+        })
+        .catch(err => alertify.error(err.message));
 });
 
 $("#register-form").submit((ev) => {
@@ -35,27 +35,28 @@ $("#register-form").submit((ev) => {
         firstname = $("#register-firstname").val(),
         lastname = $("#register-lastname").val();
 
-    username = validator.validateUsername(username);
-    password = validator.validatePassword(password);
-    validator.validateName(firstname);
-    validator.validateName(lastname);
+    validator.validateCredentials(username, password)
+        .then(credentials => {
+            validator.validateName(firstname, "Firstname");
+            validator.validateName(lastname, "Lastname");
 
-    let hashPasword = CryptoJS.SHA256(password).toString();
-    $.ajax({
-        url: "/register",
-        method: "POST",
-        data: {
-            username,
-            password: hashPasword,
-            firstname,
-            lastname
-        },
-        success: (res) => {
-            window.location += res;
-        },
-        error: (err) => {
-            console.log("Error");
-            console.log(err);
-        }
-    });
+            let hashPasword = CryptoJS.SHA256(credentials.password).toString();
+            $.ajax({
+                url: "/register",
+                method: "POST",
+                data: {
+                    username,
+                    password: hashPasword,
+                    firstname,
+                    lastname
+                },
+                success: (res) => {
+                    window.location += res;
+                },
+                error: (err) => {
+                    alertify.error(err.responseText);
+                }
+            });
+        })
+        .catch(err => alertify.error(err.message));
 });

@@ -52,28 +52,43 @@ const validator = (function() {
 
         return escapedValue;
     }
+
+    function validateUsername(username) {
+        validateStringLength(username, "Username", constants.USERNAME_MIN_LENGTH, constants.USERNAME_MAX_LENGTH);
+
+        let escapedUsername = replaceBadSymbols(username);
+
+        return escapedUsername;
+    }
+
+    function validatePassword(password) {
+        validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH, constants.PASSWORD_MAX_LENGTH);
+
+        let escapedPassword = replaceBadSymbols(password);
+
+        return escapedPassword;
+    }
+
     return {
-        validateUsername(username) {
-            validateStringLength(username, "Username", constants.USERNAME_MIN_LENGTH, constants.USERNAME_MAX_LENGTH);
+        validateCredentials(username, password) {
+            return new Promise((resolve, reject) => {
+                try {
+                    username = validateUsername(username);
+                    password = validatePassword(password);
+                } catch (error) {
+                    return reject(error);
+                }
 
-            let escapedUsername = replaceBadSymbols(username);
-
-            return escapedUsername;
+                return resolve({ username, password });
+            });
         },
         replaceBadSymbols(value) {
             let escapedValue = replaceBadSymbols(value);
 
             return escapedValue;
         },
-        validatePassword(password) {
-            validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH, constants.PASSWORD_MAX_LENGTH);
-
-            let escapedPassword = replaceBadSymbols(password);
-
-            return escapedPassword;
-        },
-        validateName(name) {
-            validateStringLength(name, "Name ", constants.NAME_MIN_LENGTH, constants.NAME_MAX_LENGTH);
+        validateName(name, paramName) {
+            validateStringLength(name, paramName, constants.NAME_MIN_LENGTH, constants.NAME_MAX_LENGTH);
         }
     };
-}());
+} ());

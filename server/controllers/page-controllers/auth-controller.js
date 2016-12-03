@@ -21,7 +21,7 @@ module.exports = {
                 });
             } else {
                 res.status(404)
-                    .send(`<h2>${info.message}</h2><a href="/"> Go back<a/>`);
+                    .send(`${info.message}`);
             }
         });
 
@@ -35,7 +35,7 @@ module.exports = {
                 res.status(201)
                     .send("");
             })
-            .catch(err => res.send(err));
+            .catch(err => res.status(404).send(err.message));
         // TODO: check all value and escape bad symbols
         // res.send({ email, password, firstname, lastname });
     },
