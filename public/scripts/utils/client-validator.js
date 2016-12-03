@@ -55,31 +55,23 @@ const validator = (function() {
 
     function validateUsername(username) {
         validateStringLength(username, "Username", constants.USERNAME_MIN_LENGTH, constants.USERNAME_MAX_LENGTH);
-
-        let escapedUsername = replaceBadSymbols(username);
-
-        return escapedUsername;
     }
 
     function validatePassword(password) {
         validateStringLength(password, "Password", constants.PASSWORD_MIN_LENGTH, constants.PASSWORD_MAX_LENGTH);
-
-        let escapedPassword = replaceBadSymbols(password);
-
-        return escapedPassword;
     }
 
     return {
         validateCredentials(username, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    username = validateUsername(username);
-                    password = validatePassword(password);
+                    validateUsername(username);
+                    validatePassword(password);
                 } catch (error) {
                     return reject(error);
                 }
 
-                return resolve({ username, password });
+                return resolve();
             });
         },
         replaceBadSymbols(value) {
