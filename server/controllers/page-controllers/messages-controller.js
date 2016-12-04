@@ -33,7 +33,7 @@ module.exports = (data) => {
             };
 
             data.messages.createMessage(messageObj)
-                .then(res.redirect("/home"))
+                .then(res.redirect("/messages"))
                 .catch(err => res.json(err));
         },
         getMessages(req, res) {

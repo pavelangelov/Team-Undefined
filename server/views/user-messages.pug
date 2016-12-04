@@ -11,13 +11,13 @@ block container
             div.message-container.row
                 header.message-header.col-sm-1
                         img(src= message.image alt="" class="user-image")
-                div.message.col-sm-10
+                div.message
                     div.author-username
                         | From
                         a(href=`/users/${message.author}/profile`) #{message.author}
                         | to
                         a(href=`/users/${message.targetUser}/profile`) #{message.targetUser}
-                    div.content
+                    div.content.col-sm-10
                         | #{message.content}
-                    div.date
+                    div.date.col-sm-10
                         | Recieved on: #{message.postDate}
