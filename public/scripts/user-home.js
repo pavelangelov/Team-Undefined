@@ -15,7 +15,7 @@ $("button.like").on("click", (ev) => {
             setTimeout(() => {
                 $(`button.dislike[data-id="${postId}"]`).toggleClass("hidden");
                 $this.toggleClass("hidden");
-            }, 500);
+            }, 100);
         },
         error: (err) => {
             alertify.error(err.message);
@@ -36,7 +36,7 @@ $("button.dislike").on("click", (ev) => {
             setTimeout(() => {
                 $(`button.like[data-id="${postId}"]`).toggleClass("hidden");
                 $this.toggleClass("hidden");
-            }, 500);
+            }, 100);
         },
         error: (err) => {
             alertify.error(err.message);

@@ -16,7 +16,7 @@ block container
                                 div.just-text to 
                                 a(href=`/users/${post.targetUser}/profile`) #{post.targetUser}
                             div(class="post-content row col-sm-offset-1")
-                                p #{post.content}
+                                p.col-sm-11 #{post.content}
                     div(class="post-buttons row col-sm-12")
                         if post.isLiked
                             button(class="btn btn-primary like hidden col-sm-2" data-id=`${post._id}`) Like

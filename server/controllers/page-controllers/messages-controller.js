@@ -25,6 +25,7 @@ module.exports = (data) => {
             let messageObj = {
                 author: user.username,
                 authorId: user._id,
+                targetUser: req.params.username,
                 targetUserId: req.body.id,
                 image: user.image,
                 postDate: date,
@@ -32,7 +33,7 @@ module.exports = (data) => {
             };
 
             data.messages.createMessage(messageObj)
-                .then(res.redirect("/home"))
+                .then(res.redirect("/messages"))
                 .catch(err => res.json(err));
         },
         getMessages(req, res) {
