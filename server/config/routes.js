@@ -26,7 +26,7 @@ module.exports = (app, pageController) => {
         .get("/users/:username/profile", pageController.users.userProfile)
         .get("/send-friendship-reques/:username", pageController.users.sendUserRequest)
         .post("/confirm-request/:requestId", pageController.users.confirmFriendshipRequest)
-        .get("/messages", pageController.messages.messages)
+        .get("/messages", pageController.messages.getMessages)
         .get("/send-message/:username", pageController.messages.getAddMessagePage)
         .post("/send-message/:username", pageController.messages.addMessage)
         .get("/create-post/:username", pageController.posts.getCreatePost)

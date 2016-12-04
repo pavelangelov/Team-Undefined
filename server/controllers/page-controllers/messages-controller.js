@@ -32,7 +32,7 @@ module.exports = (data) => {
                 .then(res.redirect("/home"))
                 .catch(err => res.json(err));
         },
-        messages(req, res) {
+        getMessages(req, res) {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
             }
