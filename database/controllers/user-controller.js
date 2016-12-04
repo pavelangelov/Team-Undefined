@@ -37,6 +37,9 @@ module.exports = {
         userInfo = userInfo || user.userInfo;
         newImage = newImage || user.image;
 
+        validator.validateName(firstName);
+        validator.validateName(lastName);
+
         return new Promise((resolve, reject) => {
             User.findOneAndUpdate({ "_id": user._id }, { "firstname": firstName, "lastname": lastName, "userInfo": userInfo, "image": newImage }, { save: true },
                 (err, user1) => {
