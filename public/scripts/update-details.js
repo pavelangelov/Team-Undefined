@@ -2,7 +2,7 @@
 
 "use strict";
 
-const waitTime = 300;
+const waitTime = 1000;
 
 $("#update-details-form").submit((ev) => {
     ev.preventDefault();
