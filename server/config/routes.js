@@ -38,7 +38,7 @@ module.exports = (app, pageController) => {
         .put("/posts/:postId/decrease-likes", pageController.posts.decreasePostLikes)
         .all("*", (req, res) => {
             res.status(statusCodeNotFound);
-            res.redirect("/");
+            res.render("error");
         });
 
     app.use(router);

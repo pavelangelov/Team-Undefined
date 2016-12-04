@@ -103,18 +103,24 @@ module.exports = (data) => {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
             }
-            let image = req.files.file.originalFilename,
-                tempPath = req.files.file.path,
-                userInfo = req.body.about,
+
+            let newImage;
+            if (req.files.file.originalFilename) {
+                let image = req.files.file.originalFilename,
+                    tempPath = req.files.file.path;
                 newImage = `http://nodejsapp.netcoms.eu/images/${image}`;
-            ftp.put(tempPath, image, (error) => {
-                if (!error) {
-                    console.log("File transferred successfully!");
-                }
-            });
+
+                ftp.put(tempPath, image, (error) => {
+                    if (!error) {
+                        console.log("File transferred successfully!");
+                    }
+                });
+            }
+
             let user = req.user,
                 firstName = req.body.firstname,
-                lastName = req.body.lastname;
+                lastName = req.body.lastname,
+                userInfo = req.body.about;
             data.users.updateUser(user, firstName, lastName, userInfo, newImage)
                 .then(res.redirect("/profile"))
                 .catch(err => res.json(err));

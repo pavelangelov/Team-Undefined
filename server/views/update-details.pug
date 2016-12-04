@@ -5,12 +5,15 @@ block style
 	link(rel="stylesheet" href="/static/css/user-profile.css")
 block container
 	div#main.row.col-sm-12
-		form(method="post" action="/update-details" enctype="multipart/form-data" class="col-sm-4 col-sm-offset-4")
+		form(method="post" action="/update-details" enctype="multipart/form-data" id="update-details-form" class="col-sm-4 col-sm-offset-4")
 			label(for="firstname") Firstname
 			input(type="text" id="firstname" name="firstname" placeholder="Firstname" class="form-control" value=user.firstname)
 			label(for="lastname") Lastname
 			input(type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control" value=user.lastname)
-			textarea.form-control(rows="4" cols="50" name="about" placeholder="Information about you...")
+			textarea.form-control(rows="4" cols="50" id="about" name="about" placeholder="Information about you...")
 			label(for="file") Upload new profile picture
 			input(type="file" id="file" name="file")
 			input(type="submit" class="form-control btn btn-success" value="Update")
+block body-scripts
+	script(src="/static/scripts/utils/client-validator.js")
+	script(src="/static/scripts/update-details.js")
