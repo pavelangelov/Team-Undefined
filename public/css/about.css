@@ -3,10 +3,12 @@
 }
 
 .member {
+	margin: 20px;
 	padding-bottom: 10px;
 	border: 1px solid #37003C;
 	border-radius: 15px;
 	background-color: white;
+	box-shadow: 10px 10px 5px #3c3c3c;
 }
 
 .member-name {
