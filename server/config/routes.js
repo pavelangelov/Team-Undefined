@@ -1,13 +1,9 @@
 "use strict";
 
 const router = require("express").Router(),
-    authController = require("../controllers/page-controllers/auth-controller"),
-    usersController = require("../controllers/page-controllers/users-controller"),
-    messagesController = require("../controllers/page-controllers/messages-controller"),
-    postsController = require("../controllers/page-controllers/posts-controller"),
     statusCodeNotFound = 404;
 
-module.exports = (app) => {
+module.exports = (app, pageController) => {
     router.get("/", (req, res) => {
         if (req.user) {
             res.redirect("/home");
@@ -15,28 +11,28 @@ module.exports = (app) => {
             res.render("index");
         }
     })
-        .post("/login", authController.login)
-        .get("/home", authController.home)
-        .post("/register", authController.register)
-        .get("/friends", authController.friends)
-        .post("/friends", authController.friendsSearch)
-        .get("/searchFriends", authController.searchFriends)
-        .post("/searchFriends", authController.searchFriends)
-        .get("/logout", authController.logout)
-        .get("/about", authController.about)
-        .get("/profile", usersController.profile)
-        .get("/update-details", usersController.getUpdateUser)
-        .post("/update-details", usersController.updateUser)
-        .get("/users/:username/profile", usersController.userProfile)
-        .get("/send-friendship-reques/:username", usersController.sendUserRequest)
-        .post("/confirm-request/:requestId", usersController.confirmFriendshipRequest)
-        .get("/messages", messagesController.messages)
-        .get("/send-message/:username", messagesController.getAddMessagePage)
-        .post("/send-message/:username", messagesController.addMessage)
-        .get("/create-post/:username", postsController.getCreatePost)
-        .post("/create-post/:username", postsController.addPost)
-        .put("/posts/:postId/increase-likes", postsController.increasePostLikes)
-        .put("/posts/:postId/decrease-likes", postsController.decreasePostLikes)
+        .post("/login", pageController.auth.login)
+        .get("/home", pageController.auth.home)
+        .post("/register", pageController.auth.register)
+        .get("/friends", pageController.auth.friends)
+        .post("/friends", pageController.auth.friendsSearch)
+        .get("/searchFriends", pageController.auth.searchFriends)
+        .post("/searchFriends", pageController.auth.searchFriends)
+        .get("/logout", pageController.auth.logout)
+        .get("/about", pageController.auth.about)
+        .get("/profile", pageController.users.profile)
+        .get("/update-details", pageController.users.getUpdateUser)
+        .post("/update-details", pageController.users.updateUser)
+        .get("/users/:username/profile", pageController.users.userProfile)
+        .get("/send-friendship-reques/:username", pageController.users.sendUserRequest)
+        .post("/confirm-request/:requestId", pageController.users.confirmFriendshipRequest)
+        .get("/messages", pageController.messages.messages)
+        .get("/send-message/:username", pageController.messages.getAddMessagePage)
+        .post("/send-message/:username", pageController.messages.addMessage)
+        .get("/create-post/:username", pageController.posts.getCreatePost)
+        .post("/create-post/:username", pageController.posts.addPost)
+        .put("/posts/:postId/increase-likes", pageController.posts.increasePostLikes)
+        .put("/posts/:postId/decrease-likes", pageController.posts.decreasePostLikes)
         .all("*", (req, res) => {
             res.status(statusCodeNotFound);
             res.redirect("/");
