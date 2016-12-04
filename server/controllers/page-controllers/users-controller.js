@@ -108,8 +108,8 @@ module.exports = (data) => {
             let image = req.files.file.originalFilename,
                 tempPath = req.files.file.path,
                 newImage = `ftp://netcoms.eu/${image}`;
-            ftp.put(tempPath, image, (hadError) => {
-                if (!hadError) {
+            ftp.put(tempPath, image, (error) => {
+                if (!error) {
                     console.log("File transferred successfully!");
                 }
             });
