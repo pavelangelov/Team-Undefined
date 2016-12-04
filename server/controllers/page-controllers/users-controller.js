@@ -1,7 +1,5 @@
 "use strict";
-const path = require("path"),
-    fs = require('fs'),
-    JSFtp = require("jsftp");
+const JSFtp = require("jsftp");
 
 const ftp = new JSFtp({
     host: "netcoms.eu",
@@ -105,11 +103,12 @@ module.exports = (data) => {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
             }
+
             let newImage;
             if (req.files.file.originalFilename) {
                 let image = req.files.file.originalFilename,
                     tempPath = req.files.file.path;
-                newImage = `ftp://netcoms.eu/${image}`;
+                newImage = `http://nodejsapp.netcoms.eu/images/${image}`;
 
                 ftp.put(tempPath, image, (error) => {
                     if (!error) {
@@ -117,6 +116,7 @@ module.exports = (data) => {
                     }
                 });
             }
+
             let user = req.user,
                 firstName = req.body.firstname,
                 lastName = req.body.lastname,
