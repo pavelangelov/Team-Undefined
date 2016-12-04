@@ -1,11 +1,11 @@
 "use strict";
 
-const userController = require("./user-controller"),
-    messageControler = require("./message-controller"),
-    postController = require("./post-controller");
+const users = require("./user-controller"),
+    messages = require("./message-controller"),
+    posts = require("./post-controller");
 
 module.exports = {
-    userController,
-    messageControler,
-    postController
+    users,
+    messages,
+    posts
 };

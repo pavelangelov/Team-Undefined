@@ -9,7 +9,7 @@ module.exports = {
             return res.redirect("/");
         }
 
-        data.userController.getUserByUsername(req.params.username)
+        data.users.getUserByUsername(req.params.username)
             .then(reciever => {
                 res.render("users/create-post", { user: req.user, reciever });
             })
@@ -30,7 +30,7 @@ module.exports = {
             content: req.body.content
         };
 
-        data.postController.createPost(postLikeObj)
+        data.posts.createPost(postLikeObj)
             .then(res.redirect("/home"))
             .catch(err => res.json(err));
     },
@@ -38,7 +38,7 @@ module.exports = {
         let postId = req.params.postId,
             userId = req.user._id;
 
-        data.postController.increaseLikes(postId, userId)
+        data.posts.increaseLikes(postId, userId)
             .then(post => {
                 res.status(statusCodes.OK.code)
                     .send(`${post.likes + 1}`);
@@ -49,7 +49,7 @@ module.exports = {
         let postId = req.params.postId,
             userId = req.user._id;
 
-        data.postController.decreaseLikes(postId, userId)
+        data.posts.decreaseLikes(postId, userId)
             .then(post => {
                 res.status(statusCodes.OK.code)
                     .send(`${post.likes - 1}`);

@@ -3,18 +3,26 @@
 const data = require("../../../database/controllers");
 
 module.exports = {
-    userProfile(req, res, next) {
+    profile(req, res) {
+        if (!req.isAuthenticated()) {
+            res.redirect("/");
+        } else {
+            let user = req.user;
+            res.render("user-profile", { user });
+        }
+    },
+    userProfile(req, res) {
         let otherUsername = req.params.username;
 
         if (!req.isAuthenticated()) {
-            Promise.all([data.userController.getAnonymousUser(), data.userController.getUserByUsername(otherUsername)])
+            Promise.all([data.users.getAnonymousUser(), data.users.getUserByUsername(otherUsername)])
                 .then(([user, pageOwner]) => {
                     res.render("users/users-profile", { user, pageOwner });
                 })
                 .catch(err => res.json(err));
         } else {
             let user = req.user;
-            data.userController.getUserByUsername(otherUsername)
+            data.users.getUserByUsername(otherUsername)
                 .then(otherUser => {
                     if (user.friends.some(x => x._id.toString() === otherUser._id.toString())) {
                         otherUser.isFriend = true;
@@ -25,7 +33,15 @@ module.exports = {
                 .catch(err => res.json(err));
         }
     },
-    sendUserRequest(req, res, next) {
+    getUpdateUser(req, res) {
+        if (!req.isAuthenticated()) {
+            return res.redirect("/");
+        }
+
+        let user = req.user;
+        res.render("update-details", { user });
+    },
+    sendUserRequest(req, res) {
         if (!req.isAuthenticated()) {
             res.redirect("/");
         } else {
@@ -35,12 +51,12 @@ module.exports = {
                 requestUserFullname: `${req.user.firstname} ${req.user.lastname}`,
                 requestUserImage: req.user.image
             };
-            data.userController.sendRequest(req.params.username, request)
+            data.users.sendRequest(req.params.username, request)
                 .then(res.redirect("/home"))
                 .catch(err => res.json(err));
         }
     },
-    confirmFriendshipRequest(req, res, next) {
+    confirmFriendshipRequest(req, res) {
         if (!req.isAuthenticated()) {
             res.redirect("/");
         } else {
@@ -52,7 +68,7 @@ module.exports = {
                 _id: req.user._id,
                 image: req.user.image
             };
-            data.userController.addFriend(otherUser, self)
+            data.users.addFriend(otherUser, self)
                 .then(user => {
                     let friend = {
                         username: user.username,
@@ -60,13 +76,30 @@ module.exports = {
                         image: user.image
                     };
 
-                    Promise.all([data.userController.addFriend(req.user.username, friend), data.userController.removeRequest(req.user.username, requestId)])
+                    Promise.all([data.users.addFriend(req.user.username, friend), data.userController.removeRequest(req.user.username, requestId)])
                         .then(res.redirect("/profile"));
                 })
                 .catch(err => res.json(err));
         }
     },
-    removeUserFromFriends(req, res, next) {
+    removeUserFromFriends(req, res) {
 
+    },
+    updateUser(req, res) {
+        if (!req.isAuthenticated()) {
+            return res.redirect("/");
+        }
+
+        let user = req.user,
+            newPass = req.body.newPassword,
+            confirmPassword = req.body.confirmPassword;
+
+        if (confirmPassword === newPass) {
+            data.users.updateUser(user, newPass)
+                .then(res.redirect("/profile"))
+                .catch(err => res.json(err));
+        } else {
+            res.render("update-details", { user });
+        }
     }
 };
