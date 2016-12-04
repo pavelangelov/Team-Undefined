@@ -38,15 +38,15 @@ block container
                     | About me...
     
     div(class="friends-list row col-sm-3")
-        div(class="custom-style row")
-            p Your friends
-        ul(id="friends")
             if user.friends.length
-                each friend in user.friends
-                    li(class="friend-info row")
-                        img(src=friend.image alt="" class="col-sm-5")
-                        a(href=`/users/${friend.username}/profile` class="col-sm-5") #{friend.username}
+                div(class="custom-style row")
+                    p Your friends
+                ul(id="friends")
+                    each friend in user.friends
+                        li(class="friend-info row")
+                            img(src=friend.image alt="" class="col-sm-5")
+                            a(href=`/users/${friend.username}/profile` class="col-sm-5") #{friend.username}
             else
-                li
-                    p(class="no-friends") No friends        
+                div(class="custom-style row")
+                    p Your have no friends        
     
