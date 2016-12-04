@@ -107,6 +107,7 @@ module.exports = (data) => {
             }
             let image = req.files.file.originalFilename,
                 tempPath = req.files.file.path,
+                userInfo = req.body.about,
                 newImage = `ftp://netcoms.eu/${image}`;
             ftp.put(tempPath, image, (error) => {
                 if (!error) {
@@ -115,16 +116,11 @@ module.exports = (data) => {
             });
             let user = req.user,
                 firstName = req.body.firstname,
-                lastName = req.body.lastname,
-                newPass = req.body.newPassword,
-                confirmPassword = req.body.confirmPassword;
-            if (confirmPassword === newPass) {
-                data.users.updateUser(user, firstName, lastName, newPass, newImage)
-                    .then(res.redirect("/profile"))
-                    .catch(err => res.json(err));
-            } else {
-                res.render("update-details", { user });
-            }
+                lastName = req.body.lastname;
+            data.users.updateUser(user, firstName, lastName, userInfo, newImage)
+                .then(res.redirect("/profile"))
+                .catch(err => res.json(err));
+
         }
     };
 };

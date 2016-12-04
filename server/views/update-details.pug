@@ -6,9 +6,11 @@ block style
 block container
 	div#main.row.col-sm-12
 		form(method="post" action="/update-details" enctype="multipart/form-data" class="col-sm-4 col-sm-offset-4")
-			input(type="text" name="firstname" placeholder="Firstname" class="form-control")
-			input(type="text" name="lasname" placeholder="Lastname" class="form-control")
-			input(type="password" name="newPassword" placeholder="Change your password" class="form-control")
-			input(type="password" name="confirmPassword" placeholder="Re-enter the new password" class="form-control")
-			input(type="file" name="file")
+			label(for="firstname") Firstname
+			input(type="text" id="firstname" name="firstname" placeholder="Firstname" class="form-control" value=user.firstname)
+			label(for="lastname") Lastname
+			input(type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control" value=user.lastname)
+			textarea.form-control(rows="4" cols="50" name="about" placeholder="Information about you...")
+			label(for="file") Upload new profile picture
+			input(type="file" id="file" name="file")
 			input(type="submit" class="form-control btn btn-success" value="Update")

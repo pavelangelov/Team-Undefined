@@ -31,13 +31,14 @@ module.exports = {
             });
         });
     },
-    updateUser(user, firstName, lastName, newPassword, newImage) {
-        let firstN = firstName ? firstName : user.firstname;
-        let lastN = lastName ? lastName : user.lastname;
-        let newP = newPassword || user.newPassword;
-        let newI = newImage ? newImage : user.image;
+    updateUser(user, firstName, lastName, userInfo, newImage) {
+        firstName = firstName || user.firstname;
+        lastName = lastName || user.lastname;
+        userInfo = userInfo || user.userInfo;
+        newImage = newImage || user.image;
+
         return new Promise((resolve, reject) => {
-            User.findOneAndUpdate({ "_id": user.id }, { "firstname": firstN, "lastname": lastN, "password": newP, "image": newI }, { save: true },
+            User.findOneAndUpdate({ "_id": user._id }, { "firstname": firstName, "lastname": lastName, "userInfo": userInfo, "image": newImage }, { save: true },
                 (err, user1) => {
                     if (err) {
                         return reject(err);
