@@ -18,7 +18,7 @@ module.exports = {
                     }
 
                     return res.status(statusCodes.OK.code)
-                                .send("home");
+                        .send("home");
                 });
             } else {
                 res.status(statusCodes.NotFound.code)
@@ -83,9 +83,32 @@ module.exports = {
         if (!req.isAuthenticated()) {
             return res.redirect("/");
         }
-
         let user = req.user;
-        res.render("user-friends", { user, friends: user.friends });
+        res.render("user-friends", { user });
+    },
+    friendsSearch(req, res, next) {
+        if (!req.isAuthenticated()) {
+            return res.redirect("/");
+        }
+        let user = req.user;
+        let str = req.body.search;
+        if (str) {
+            data.userController.getNonFriendsUsers(str, user)
+                .then(searchedUsers => {
+                    res.render("user-searchFriends", { user, searchFriends: searchedUsers });
+                });
+        }
+    },
+    searchFriends(req, res, next) {
+        if (!req.isAuthenticated()) {
+            return res.redirect("/");
+        }
+        let user = req.user;
+        let str = req.body.search;
+        data.userController.getNonFriendsUsers(str, user)
+            .then(searchedUsers => {
+                res.render("user-searchFriends", { user, searchFriends: searchedUsers });
+            });
     },
     getUpdateUser(req, res, next) {
         if (!req.isAuthenticated()) {

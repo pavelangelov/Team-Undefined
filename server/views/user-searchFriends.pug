@@ -10,3 +10,9 @@ block container
                 label(for="search")
                 input(type="text" name="search" id="search" class="search form-control col-sm-6")
                 input(type="submit" class="btn btn-default form-control col-sm-2" value="Search")
+    div(class="row col-sm-9 col-sm-offset-1")
+        ul(id="list")
+            if searchFriends.lenght
+            each user in searchFriends
+                li(class="user row")
+                    a(href="/users/" + user.username + "/profile" class="btn btn-primary col-sm-2") #{user.username}    

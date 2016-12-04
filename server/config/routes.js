@@ -1,5 +1,5 @@
 "use strict";
-
+const str = "";
 const router = require("express").Router(),
     authController = require("../controllers/page-controllers/auth-controller"),
     usersController = require("../controllers/page-controllers/users-controller"),
@@ -9,12 +9,12 @@ const router = require("express").Router(),
 
 module.exports = (app) => {
     router.get("/", (req, res) => {
-        if (req.user) {
-            res.redirect("/home");
-        } else {
-            res.render("index");
-        }
-    })
+            if (req.user) {
+                res.redirect("/home");
+            } else {
+                res.render("index");
+            }
+        })
         .post("/login", authController.login)
         .get("/home", authController.home)
         .post("/register", authController.register)
@@ -23,6 +23,9 @@ module.exports = (app) => {
         .get("/update-details", authController.getUpdateUser)
         .post("/update-details", authController.updateUser)
         .get("/friends", authController.friends)
+        .post("/friends", authController.friendsSearch)
+        .get("/searchFriends", authController.searchFriends)
+        .post("/searchFriends", authController.searchFriends)
         .get("/logout", authController.logout)
         .get("/about", authController.about)
         .get("/users/:username/profile", usersController.userProfile)

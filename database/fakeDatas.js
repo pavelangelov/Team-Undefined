@@ -1,7 +1,6 @@
 "use strict";
 
-const teamMembers = [
-    {
+const teamMembers = [{
         firstname: "Pavel",
         lastname: "Angelov",
         image: "https://telerikacademy.com/Content/Avatars/936/37936_083e8ae3_180x180.jpg",
@@ -50,8 +49,7 @@ const anonymousUser = {
     isAnonymous: true
 };
 
-const users = [
-    {
+const users = [{
         _id: "aabbvvggddee",
         username: "pavel",
         password: "parola",
@@ -61,8 +59,7 @@ const users = [
         telerikAccount: "https://telerikacademy.com/Users/p_a_v_el",
         githubAccount: "https://github.com/pavelangelov",
         isTeamMember: true,
-        requests: [
-            {
+        requests: [{
                 _id: "venko;Veselin;Krystev",
                 requestUser: "venko",
                 requestUserFullname: "Veselin Krystev",
@@ -87,8 +84,7 @@ const users = [
                 requestUserImage: "https://telerikacademy.com/Content/Avatars/950/34950_3dcadc58_180x180.jpg"
             }
         ],
-        friends: [
-            {
+        friends: [{
                 _id: "qqwweerrssaa",
                 username: "pesho",
                 image: "/static/images/pesho.jpg"
@@ -122,26 +118,13 @@ const users = [
     },
     {
         _id: "zzbbvvggddyy",
-        username: "venko",
-        password: "newpass",
-        firstname: "Veselin",
-        lastname: "Krystev",
+        username: "venelinp",
+        password: "viplnx",
+        firstname: "Venelin",
+        lastname: "Petkov",
         image: "https://telerikacademy.com/Content/Avatars/908/33908_ea8f69d8_180x180.jpg",
         telerikAccount: "https://telerikacademy.com/Users/Veselin93",
         githubAccount: "https://github.com/Vekoks",
-        isTeamMember: true,
-        requests: [],
-        friends: []
-    },
-    {
-        _id: "zzwwvvagddyy",
-        username: "venelin",
-        password: "newpass",
-        firstname: "Venelin",
-        lastname: "Petkov",
-        image: "https://telerikacademy.com/Content/Avatars/045/18045_721539aa_180x180.jpg",
-        telerikAccount: "https://telerikacademy.com/Users/venelingp",
-        githubAccount: "https://github.com/VenelinGP",
         isTeamMember: true,
         requests: [],
         friends: []
@@ -222,8 +205,7 @@ const users = [
     }
 ];
 
-const messages = [
-    {
+const messages = [{
         _id: "aawweeqqeeqq",
         author: "pesho",
         authorId: "qqwweerrssaa",
@@ -328,8 +310,7 @@ const messages = [
     }
 ];
 
-const posts = [
-    {
+const posts = [{
         _id: "aawweeqqeeqq",
         author: "pesho",
         authorId: "qqwweerrssaa",

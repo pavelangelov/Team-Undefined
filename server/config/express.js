@@ -15,7 +15,11 @@ module.exports = (config, app) => {
 
     let secretKey = process.env["SECRET_KEY"] || config.development.secret;
     app.use(cookieParser(secretKey));
-    app.use(session({ secret: secretKey }));
+    app.use(session({
+        secret: secretKey,
+        resave: true,
+        saveUninitialized: true
+    }));
 
     require("./passport")(app);
     app.use("/static", express.static(`${config.path.rootPath}/public`));
