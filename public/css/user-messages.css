@@ -6,16 +6,17 @@
 #messages {
     margin: 0 15%;
     border-radius: 10px;
-    background-color: #fff;
     max-width: 70%;
 }
 
 .message-container {
-    margin: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px;
     padding: 20px;
     display: flex;
     flex-direction: row;
-    border-bottom: 2px solid #37003C;
+    box-shadow: 10px 10px 5px #4f4f4f;
 }
 
 .message-container .message {

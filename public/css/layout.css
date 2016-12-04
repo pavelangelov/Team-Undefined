@@ -4,8 +4,8 @@ body, header, h1, di, img, a, nav, ul, li {
 }
 
 body {
-    background-image: url("../images/bacground-ninja.jpg");
-    background-attachment: fixed;
+    background-color: #41AAC4;
+    
 }
 
 #pos-fixed {
@@ -71,6 +71,10 @@ body {
 
 .nav-list-item:hover {
     background-color: rgb(5,241,255);
+}
+
+.nav-list-item:hover a {
+    color: #37003C;
 }
 
 .nav-list-item a {
