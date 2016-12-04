@@ -1,4 +1,15 @@
 "use strict";
+const path = require("path"),
+    fs = require('fs'),
+    JSFtp = require("jsftp");
+
+const ftp = new JSFtp({
+    host: "netcoms.eu",
+    port: 21,
+    user: "nodejsftpuser",
+    pass: "ftpJs1620@"
+});
+
 
 module.exports = (data) => {
     return {
@@ -94,13 +105,21 @@ module.exports = (data) => {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
             }
-
+            let image = req.files.file.originalFilename,
+                tempPath = req.files.file.path,
+                newImage = `ftp://netcoms.eu/${image}`;
+            ftp.put(tempPath, image, (error) => {
+                if (!error) {
+                    console.log("File transferred successfully!");
+                }
+            });
             let user = req.user,
+                firstName = req.body.firstname,
+                lastName = req.body.lastname,
                 newPass = req.body.newPassword,
                 confirmPassword = req.body.confirmPassword;
-
             if (confirmPassword === newPass) {
-                data.users.updateUser(user, newPass)
+                data.users.updateUser(user, firstName, lastName, newPass, newImage)
                     .then(res.redirect("/profile"))
                     .catch(err => res.json(err));
             } else {

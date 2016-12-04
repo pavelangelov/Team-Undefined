@@ -10,9 +10,8 @@ module.exports = (config, app) => {
     app.set("views", `${config.path.rootPath}/server/views`);
 
     // here load other routs
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({ extended: true, uploadDir: "../../public/images" }));
     app.use(bodyParser.json());
-
     let secretKey = process.env["SECRET_KEY"] || config.development.secret;
     app.use(cookieParser(secretKey));
     app.use(session({
