@@ -2,15 +2,18 @@
 
 const router = require("express").Router(),
     statusCodeNotFound = 404;
+let multipart = require("connect-multiparty");
+let multipartMiddleware = multipart();
+
 
 module.exports = (app, pageController) => {
     router.get("/", (req, res) => {
-        if (req.user) {
-            res.redirect("/home");
-        } else {
-            res.render("index");
-        }
-    })
+            if (req.user) {
+                res.redirect("/home");
+            } else {
+                res.render("index");
+            }
+        })
         .post("/login", pageController.auth.login)
         .get("/home", pageController.auth.home)
         .post("/register", pageController.auth.register)
@@ -22,7 +25,7 @@ module.exports = (app, pageController) => {
         .get("/about", pageController.auth.about)
         .get("/profile", pageController.users.profile)
         .get("/update-details", pageController.users.getUpdateUser)
-        .post("/update-details", pageController.users.updateUser)
+        .post("/update-details", multipartMiddleware, pageController.users.updateUser)
         .get("/users/:username/profile", pageController.users.userProfile)
         .get("/send-friendship-reques/:username", pageController.users.sendUserRequest)
         .post("/confirm-request/:requestId", pageController.users.confirmFriendshipRequest)

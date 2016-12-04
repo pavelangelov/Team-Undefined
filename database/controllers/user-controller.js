@@ -31,14 +31,20 @@ module.exports = {
             });
         });
     },
-    updateUser(user, newPassword) {
-        // TODO: Update user details
-
-        return Promise.resolve()
-            .then(() => {
-                // db.updateOne(user, $password: newPassword);
-                return user;
-            });
+    updateUser(user, firstName, lastName, newPassword, newImage) {
+        let firstN = firstName ? firstName : user.firstname;
+        let lastN = lastName ? lastName : user.lastname;
+        let newP = newPassword || user.newPassword;
+        let newI = newImage ? newImage : user.image;
+        return new Promise((resolve, reject) => {
+            User.findOneAndUpdate({ "_id": user.id }, { "firstname": firstN, "lastname": lastN, "password": newP, "image": newI }, { save: true },
+                (err, user1) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(user1);
+                });
+        });
     },
     sendRequest(username, request) {
         return new Promise((resolve, reject) => {

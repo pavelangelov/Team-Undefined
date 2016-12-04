@@ -85,6 +85,7 @@ module.exports = (data) => {
             }
             let user = req.user;
             let str = req.body.search;
+            console.log(str);
             data.users.getNonFriendsUsers(str, user)
                 .then(searchedUsers => {
                     res.render("user-searchFriends", { user, searchFriends: searchedUsers });
