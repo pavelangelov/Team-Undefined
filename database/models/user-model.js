@@ -23,6 +23,7 @@ let userSchema = new Schema({
         required: true
     },
     fullname: { type: String },
+    userInfo: { type: String },
     image: { type: String },
     telerikAccount: { type: String },
     githubAccount: { type: String },

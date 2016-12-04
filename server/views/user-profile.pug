@@ -5,49 +5,48 @@ block style
     link(rel="stylesheet" href="/static/css/user-profile.css")
 block container
     div(class="leftOption row col-sm-3")
-        ul(id="listOfOption")
-            li(class="post col-sm-10 col-sm-offset-1")
-                a(href="#" class="btn btn-primary col-sm-10") Address
-            li(class="post col-sm-10 col-sm-offset-1") 
-                a(href="#" class="btn btn-primary col-sm-10") School
-            li(class="post col-sm-10 col-sm-offset-1")
-                a(href="#" class="btn btn-primary col-sm-10") Relationship
+        ul(id="listOfOption" class="col-sm-12")
             li(class="post col-sm-10 col-sm-offset-1")
                 a(href="/update-details" class="btn btn-primary col-sm-10") Update profile
         if user.requests.length
             ul.requets
+                div.unconfirmed-requests.col-sm-offset-1
+                    | Unconfirmed requests
                 each request in user.requests
-                    li.post.col-sm-12
+                    li.custom-style.col-sm-12
                         form(action=`/confirm-request/${request._id}` method="POST")
                             a(href=`/users/${request.requestUser}/profile`) #{request.requestUserFullname}
                             img(src=request.requestUserImage alt="" class="col-sm-2")
                             input(type="submit" class="btn btn-primary" value="Confirm Friendship")
         else
-            div | No unconfirmed Friendship requets
+            div.no-requests.col-sm-offset-1
+                | No unconfirmed Friendship requets
                 
     div(class="row col-sm-5 col-sm-offset-1" )
         header(class="row")
             img(src= user.image alt="" class="col-sm-6")
-            div(class="post username col-sm-5")
-                h3
+            div(class="custom-style username col-sm-5")
+                h4
                     | Username: #{user.username}
-                h3
+                h4
                     | Name: #{user.firstname}  #{user.lastname}
-        div(class="post row col-sm-11")
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat adipisci natus deserunt ducimus incidunt, velit molestias, obcaecati provident in distinctio quod iste harum beatae reiciendis vel nihil, minus vitae omnis!
-    
-    div(class="rigthOption row col-sm-3")
-        div(class="post")
-            p Friends
-        ul(id="list")
-                if user.friends.length
-                    each friend in user.friends
-                        li(id="1")
-                        div(class="post row col-sm-11 col-sm-offset-1")
-                            a(href=`/users/${friend.username}/profile` class="btn btn-primary col-sm-10") #{friend.username}
-                            img(src=friend.image alt="" class="col-sm-2")
+        div(class="custom-style row col-sm-12")
+            p.about
+                if user.userInfo
+                    | #{user.userInfo}
                 else
-                    li(id="1")
-                        div(class="post row col-sm-11 col-sm-offset-1")
-                            p(class="btn btn-primary") No friends        
+                    | About me...
+    
+    div(class="friends-list row col-sm-3")
+        div(class="custom-style row")
+            p Your friends
+        ul(id="friends")
+            if user.friends.length
+                each friend in user.friends
+                    li(class="friend-info row")
+                        img(src=friend.image alt="" class="col-sm-5")
+                        a(href=`/users/${friend.username}/profile` class="col-sm-5") #{friend.username}
+            else
+                li
+                    p(class="no-friends") No friends        
     
