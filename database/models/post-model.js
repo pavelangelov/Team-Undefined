@@ -12,6 +12,10 @@ let postSchema = new Schema({
         type: String,
         required: true
     },
+    targetUser: {
+        type: String,
+        required: true
+    },
     targetUserId: {
         type: String,
         required: true
@@ -20,7 +24,7 @@ let postSchema = new Schema({
         type: String,
         required: true
     },
-    postDate: { type: Date },
+    postDate: { type: String },
     likes: { type: Number },
     content: {
         type: String,

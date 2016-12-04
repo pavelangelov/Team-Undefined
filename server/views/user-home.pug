@@ -7,13 +7,16 @@ block style
 block container
         main(id="main")
             each post in posts
-                div(class="post row col-sm-7 col-sm-offset-2")
+                div(class="post row col-sm-8 col-sm-offset-2")
                     header(class="row")
                         img(src=post.image alt="" class="user-image col-sm-6")
-                        div(class="username col-sm-5")
-                            a(href=`/users/${post.author}/profile`) #{post.author}
-                    div(class="post-content row col-sm-11 col-sm-offset-1")
-                        p #{post.content}
+                        div.content
+                            div(class="username")
+                                a(href=`/users/${post.author}/profile`) #{post.author}
+                                div.just-text to 
+                                a(href=`/users/${post.targetUser}/profile`) #{post.targetUser}
+                            div(class="post-content row col-sm-offset-1")
+                                p #{post.content}
                     div(class="post-buttons row col-sm-12")
                         if post.isLiked
                             button(class="btn btn-primary like hidden col-sm-2" data-id=`${post._id}`) Like
@@ -21,8 +24,9 @@ block container
                         else
                             button(class="btn btn-primary like col-sm-2" data-id=`${post._id}`) Like
                             button(class="btn btn-primary dislike hidden col-sm-2" data-id=`${post._id}`) Dislike
-                        button(class="btn btn-primary comments col-sm-3 col-sm-offset-1") View comments
-                        div.likes(class="col-sm-2 col-sm-offset-4") Likes: 
+                        div.post-date(class="col-sm-5 col-sm-offset-1")
+                            | Posted on #{post.postDate}
+                        div.likes(class="col-sm-2 col-sm-offset-2") Likes: 
                             span(data-id=`${post._id}`) #{post.likes}
         script(src="/static/scripts/user-home.js")
             

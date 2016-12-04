@@ -14,4 +14,7 @@ block container
                         div.author-username
                             a(href=`/users/${message.author}/profile`) #{message.author}
                 div.message
-                    | #{message.content}
+                    div.date
+                        | Recieved on: #{message.postDate}
+                    div.content
+                        | #{message.content}

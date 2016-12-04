@@ -5,7 +5,7 @@ const LocalStrategy = require("passport-local");
 module.exports = (passport, data) => {
     const strategy = new LocalStrategy((username, password, done) => {
         // Update user validation
-        data.userController.getUserByUsername(username, password)
+        data.users.getUserByUsername(username, password)
             .then(user => {
                 if (!user) {
                     return done(null, false, { message: "Incorrect username." });

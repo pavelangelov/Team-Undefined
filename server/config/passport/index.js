@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((username, done) => {
     // use the id serialized in the session to retrieve the use from the database
-    data.userController.getUserByUsername(username)
+    data.users.getUserByUsername(username)
         .then(user => {
             if (user) {
                 return done(null, user);

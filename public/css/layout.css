@@ -34,6 +34,14 @@ body {
     font-weight: bolder;
 }
 
+#header h1 a {
+    color: #37003C;
+}
+
+#header h1 a:hover {
+    text-decoration: none;
+}
+
 #user-info {
     margin-top: 5px;
 }
