@@ -4,8 +4,10 @@
 
 $("#login-form").submit((ev) => {
     ev.preventDefault();
-    let username = $("#login-username").val(),
-        password = $("#login-password").val();
+    let username = $("#login-username").val()
+                                        .trim(),
+        password = $("#login-password").val()
+                                        .trim();
 
     validator.validateCredentials(username, password)
         .then(() => {
@@ -30,10 +32,14 @@ $("#login-form").submit((ev) => {
 
 $("#register-form").submit((ev) => {
     ev.preventDefault();
-    let username = $("#register-username").val(),
-        password = $("#register-password").val(),
-        firstname = $("#register-firstname").val(),
-        lastname = $("#register-lastname").val();
+    let username = $("#register-username").val()
+                                        .trim(),
+        password = $("#register-password").val()
+                                        .trim(),
+        firstname = $("#register-firstname").val()
+                                        .trim(),
+        lastname = $("#register-lastname").val()
+                                        .trim();
 
     validator.validateCredentials(username, password)
         .then(() => {

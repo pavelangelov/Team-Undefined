@@ -22,14 +22,19 @@
     margin: 10px;
 }
 
+.author-username a {
+    margin: 0 10px;
+}
+
 .date {
     color: #37003C;
-    border-bottom: 1px solid #37003C;
+    border-top: 1px solid #37003C;
 }
 
 .content {
     padding: 10px;
     font-size: 16px;
+    overflow-wrap: break-word;
 }
 
 .message-container .user-image {

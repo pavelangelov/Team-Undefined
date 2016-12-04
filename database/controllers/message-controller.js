@@ -7,6 +7,7 @@ module.exports = {
         let message = new Message({
             author: messageObj.author,
             authorId: messageObj.authorId,
+            targetUser: messageObj.targetUser,
             targetUserId: messageObj.targetUserId,
             image: messageObj.image,
             postDate: messageObj.postDate,
@@ -26,7 +27,7 @@ module.exports = {
     },
     getUserMessages(userId) {
         return new Promise((resolve, reject) => {
-            Message.find({ "targetUserId": userId }, (err, messages) => {
+            Message.find({ $or: [{ "targetUserId": userId }, { "authorId": userId }] }, (err, messages) => {
                 if (err) {
                     return reject(err);
                 }

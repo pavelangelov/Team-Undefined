@@ -11,12 +11,12 @@ block container
         if user.requests.length
             ul.requets
                 div.unconfirmed-requests.col-sm-offset-1
-                    | Unconfirmed requests
+                    h3 Unconfirmed requests
                 each request in user.requests
                     li.custom-style.col-sm-12
                         form(action=`/confirm-request/${request._id}` method="POST")
+                            img(src=request.requestUserImage alt="" class="col-sm-4")
                             a(href=`/users/${request.requestUser}/profile`) #{request.requestUserFullname}
-                            img(src=request.requestUserImage alt="" class="col-sm-2")
                             input(type="submit" class="btn btn-primary" value="Confirm Friendship")
         else
             div.no-requests.col-sm-offset-1
@@ -38,15 +38,15 @@ block container
                     | About me...
     
     div(class="friends-list row col-sm-3")
-        div(class="custom-style row")
-            p Your friends
-        ul(id="friends")
             if user.friends.length
-                each friend in user.friends
-                    li(class="friend-info row")
-                        img(src=friend.image alt="" class="col-sm-5")
-                        a(href=`/users/${friend.username}/profile` class="col-sm-5") #{friend.username}
+                div(class="custom-style row")
+                    p Your friends
+                ul(id="friends")
+                    each friend in user.friends
+                        li(class="friend-info row")
+                            img(src=friend.image alt="" class="col-sm-5")
+                            a(href=`/users/${friend.username}/profile` class="col-sm-5") #{friend.username}
             else
-                li
-                    p(class="no-friends") No friends        
+                div(class="custom-style row")
+                    p Your have no friends        
     
