@@ -1,7 +1,5 @@
 "use strict";
-const path = require("path"),
-    fs = require('fs'),
-    JSFtp = require("jsftp");
+const JSFtp = require("jsftp");
 
 const ftp = new JSFtp({
     host: "netcoms.eu",
@@ -108,7 +106,7 @@ module.exports = (data) => {
             let image = req.files.file.originalFilename,
                 tempPath = req.files.file.path,
                 userInfo = req.body.about,
-                newImage = `ftp://netcoms.eu/${image}`;
+                newImage = `http://nodejsapp.netcoms.eu/images/${image}`;
             ftp.put(tempPath, image, (error) => {
                 if (!error) {
                     console.log("File transferred successfully!");
