@@ -12,6 +12,10 @@ let messageSchema = new Schema({
         type: String,
         required: true
     },
+    targetUser: {
+        type: String,
+        required: true
+    },
     targetUserId: {
         type: String,
         required: true

@@ -25,6 +25,7 @@ module.exports = (data) => {
             let messageObj = {
                 author: user.username,
                 authorId: user._id,
+                targetUser: req.params.username,
                 targetUserId: req.body.id,
                 image: user.image,
                 postDate: date,
