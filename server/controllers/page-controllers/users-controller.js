@@ -124,6 +124,29 @@ module.exports = (data) => {
             data.users.updateUser(user, firstName, lastName, userInfo, newImage)
                 .then(res.redirect("/profile"))
                 .catch(err => res.json(err));
+        },
+        uploadUserImage(req, res) {
+            if (!req.isAuthenticated()) {
+                return res.redirect("/");
+            }
+
+            console.log(req)
+            if (req.files.file.originalFilename) {
+                let image = req.files.file.originalFilename,
+                    tempPath = req.files.file.path,
+                    newImage = `http://nodejsapp.netcoms.eu/images/${image}`;
+
+                ftp.put(tempPath, image, (error) => {
+                    if (!error) {
+                        console.log("File transferred successfully!");
+                    }
+                });
+
+                data.users.updateUserImage(req.user._id, newImage)
+                    .then(res.status(200).redirect("/profile"))
+                    .catch(err => console.log(err.message));
+            }
+
 
         }
     };

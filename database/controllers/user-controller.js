@@ -31,22 +31,36 @@ module.exports = {
             });
         });
     },
-    updateUser(user, firstName, lastName, userInfo, newImage) {
+    updateUser(user, firstName, lastName, userInfo) {
         firstName = firstName || user.firstname;
         lastName = lastName || user.lastname;
         userInfo = userInfo || user.userInfo;
-        newImage = newImage || user.image;
 
         validator.validateName(firstName);
         validator.validateName(lastName);
 
         return new Promise((resolve, reject) => {
-            User.findOneAndUpdate({ "_id": user._id }, { "firstname": firstName, "lastname": lastName, "userInfo": userInfo, "image": newImage }, { save: true },
+            User.findOneAndUpdate({ "_id": user._id }, { "firstname": firstName, "lastname": lastName, "userInfo": userInfo }, { save: true },
                 (err, user1) => {
                     if (err) {
                         return reject(err);
                     }
                     return resolve(user1);
+                });
+        });
+    },
+    updateUserImage(userId, imageUrl) {
+        return new Promise((resolve, reject) => {
+            User.findOneAndUpdate({ "_id": userId },
+                { "image": imageUrl },
+                { save: true },
+                (err, user) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(user || null);
+
                 });
         });
     },
