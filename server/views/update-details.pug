@@ -11,9 +11,11 @@ block container
 			label(for="lastname") Lastname
 			input(type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control" value=user.lastname)
 			textarea.form-control(rows="4" cols="50" id="about" name="about" placeholder="Information about you...")
+			input(type="submit" class="form-control btn btn-success" value="Update")
+		form(method="post" action="/update-image" enctype="multipart/form-data" class="col-sm-4 col-sm-offset-4")
 			label(for="file") Upload new profile picture
 			input(type="file" id="file" name="file")
-			input(type="submit" class="form-control btn btn-success" value="Update")
+			input(type="submit" class="form-control btn btn-success" value="Update image")
 block body-scripts
 	script(src="/static/scripts/utils/client-validator.js")
 	script(src="/static/scripts/update-details.js")

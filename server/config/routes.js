@@ -26,6 +26,7 @@ module.exports = (app, pageController) => {
         .get("/profile", pageController.users.profile)
         .get("/update-details", pageController.users.getUpdateUser)
         .post("/update-details", multipartMiddleware, pageController.users.updateUser)
+        .post("/update-image", multipartMiddleware, pageController.users.uploadUserImage)
         .get("/users/:username/profile", pageController.users.userProfile)
         .get("/send-friendship-reques/:username", pageController.users.sendUserRequest)
         .post("/confirm-request/:requestId", pageController.users.confirmFriendshipRequest)

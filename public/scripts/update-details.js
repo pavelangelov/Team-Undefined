@@ -1,4 +1,4 @@
-/* globals window $ validator alertify */
+/* globals window $ validator alertify FormData document */
 
 "use strict";
 
@@ -8,7 +8,6 @@ $("#update-details-form").submit((ev) => {
     ev.preventDefault();
     let about = $("#about").val()
                             .trim(),
-        file = $("#file").val(),
         firstname = $("#firstname").val()
                                     .trim(),
         lastname = $("#lastname").val()
@@ -24,17 +23,16 @@ $("#update-details-form").submit((ev) => {
     $.ajax({
         url: "/update-details",
         method: "POST",
+        processData: false,
+        contentType: false,
         data: {
             firstname,
             lastname,
-            file,
             about
         },
         success: () => {
             alertify.success("Information update successfully!");
-            setTimeout(() => {
-                window.location = "/profile";
-            }, waitTime);
+            window.location = "/profile";
         },
         error: (err) => {
             alertify.error(err.message);
