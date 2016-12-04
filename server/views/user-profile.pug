@@ -11,12 +11,12 @@ block container
         if user.requests.length
             ul.requets
                 div.unconfirmed-requests.col-sm-offset-1
-                    | Unconfirmed requests
+                    h3 Unconfirmed requests
                 each request in user.requests
                     li.custom-style.col-sm-12
                         form(action=`/confirm-request/${request._id}` method="POST")
+                            img(src=request.requestUserImage alt="" class="col-sm-4")
                             a(href=`/users/${request.requestUser}/profile`) #{request.requestUserFullname}
-                            img(src=request.requestUserImage alt="" class="col-sm-2")
                             input(type="submit" class="btn btn-primary" value="Confirm Friendship")
         else
             div.no-requests.col-sm-offset-1

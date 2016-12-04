@@ -43,6 +43,8 @@ module.exports = (data) => {
         sendUserRequest(req, res) {
             if (!req.isAuthenticated()) {
                 res.redirect("/");
+            } else if (req.user.friends.some(fr => fr.username.toString() === req.params.username)) {
+                res.redirect("/");
             } else {
                 let request = {
                     _id: `${req.user.username};${req.user.firstname};${req.user.lastname}`,
@@ -75,8 +77,12 @@ module.exports = (data) => {
                             image: user.image
                         };
 
-                        Promise.all([data.users.addFriend(req.user.username, friend), data.userController.removeRequest(req.user.username, requestId)])
-                            .then(res.redirect("/profile"));
+                        Promise.all([data.users.addFriend(req.user.username, friend), data.users.removeRequest(req.user.username, requestId)])
+                            .then(() => {
+                                setTimeout(() => {
+                                    res.redirect("/profile");
+                                }, 500);
+                            });
                     })
                     .catch(err => res.json(err));
             }
