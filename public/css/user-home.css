@@ -25,6 +25,16 @@
     color: darkblue;
 }
 
+.just-text {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.post-date {
+    font-size: 16px;
+    color: #37003c;
+}
+
 .hidden {
     display: none;
 }

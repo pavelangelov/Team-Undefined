@@ -20,13 +20,16 @@ module.exports = (data) => {
                 return res.redirect("/");
             }
 
+            let today = new Date(),
+                date = `${today.toLocaleDateString()} at ${today.toLocaleTimeString()}`;
             let user = req.user;
             let postLikeObj = {
                 author: user.username,
                 authorId: user._id,
+                targetUser: req.params.username,
                 targetUserId: req.body.id,
                 image: user.image,
-                postDate: new Date(),
+                postDate: date,
                 content: req.body.content
             };
 

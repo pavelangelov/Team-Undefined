@@ -7,6 +7,7 @@ module.exports = {
         let post = new Post({
             author: postLikeObj.author,
             authorId: postLikeObj.authorId,
+            targetUser: postLikeObj.targetUser,
             targetUserId: postLikeObj.targetUserId,
             image: postLikeObj.image,
             postDate: postLikeObj.postDate,
