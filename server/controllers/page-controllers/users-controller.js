@@ -36,8 +36,8 @@ module.exports = (data) => {
                         if (user.friends.some(x => x._id.toString() === otherUser._id.toString())) {
                             otherUser.isFriend = true;
                         }
-
-                        res.render("users/users-profile", { user, pageOwner: otherUser });
+                        let isSelf = user.username === otherUser.username;
+                        res.render("users/users-profile", { user, pageOwner: otherUser, isSelf });
                     })
                     .catch(err => res.json(err));
             }
