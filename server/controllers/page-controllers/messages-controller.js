@@ -4,7 +4,7 @@ module.exports = (data) => {
     return {
         getAddMessagePage(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             data.users.getUserByUsername(req.params.username)
@@ -15,7 +15,7 @@ module.exports = (data) => {
         },
         addMessage(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let today = new Date(),

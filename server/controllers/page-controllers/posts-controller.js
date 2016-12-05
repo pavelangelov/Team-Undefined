@@ -6,7 +6,7 @@ module.exports = (data) => {
     return {
         getCreatePost(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             data.users.getUserByUsername(req.params.username)
@@ -17,7 +17,7 @@ module.exports = (data) => {
         },
         addPost(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let today = new Date(),

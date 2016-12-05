@@ -13,7 +13,7 @@ module.exports = (data) => {
     return {
         profile(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else {
                 let user = req.user;
                 res.render("user-profile", { user });
@@ -43,7 +43,7 @@ module.exports = (data) => {
         },
         getUpdateUser(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let user = req.user;
@@ -51,7 +51,7 @@ module.exports = (data) => {
         },
         sendUserRequest(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else if (req.user.friends.some(fr => fr.username.toString() === req.params.username)) {
                 res.redirect("/");
             } else {
@@ -68,7 +68,7 @@ module.exports = (data) => {
         },
         confirmFriendshipRequest(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else {
                 let requestId = req.params.requestId,
                     otherUser = requestId.split(";")[0];
@@ -88,20 +88,19 @@ module.exports = (data) => {
 
                         Promise.all([data.users.addFriend(req.user.username, friend), data.users.removeRequest(req.user.username, requestId)])
                             .then(() => {
+                                let wait = 500;
                                 setTimeout(() => {
                                     res.redirect("/profile");
-                                }, 500);
+                                }, wait);
                             });
                     })
                     .catch(err => res.json(err));
             }
         },
-        removeUserFromFriends(req, res) {
-
-        },
+        removeUserFromFriends() { },
         updateUser(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let newImage;
@@ -127,10 +126,9 @@ module.exports = (data) => {
         },
         uploadUserImage(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
-            console.log(req)
             if (req.files.file.originalFilename) {
                 let image = req.files.file.originalFilename,
                     tempPath = req.files.file.path,
@@ -146,8 +144,6 @@ module.exports = (data) => {
                     .then(res.status(200).redirect("/profile"))
                     .catch(err => console.log(err.message));
             }
-
-
         }
     };
 };

@@ -1,3 +1,13 @@
 body {
-    background-color: #05F1FF;
+    background-color: #05F1FF !important;
+}
+
+h1.error-title {
+    color: #37003C;
+    font-size: 66px;
+    font-weight: bolder;
+}
+
+.error-container a{
+    font-size: 30px;
 }

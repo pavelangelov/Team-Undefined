@@ -37,6 +37,9 @@ module.exports = (app, pageController) => {
         .post("/create-post/:username", pageController.posts.addPost)
         .put("/posts/:postId/increase-likes", pageController.posts.increasePostLikes)
         .put("/posts/:postId/decrease-likes", pageController.posts.decreasePostLikes)
+        .get("/unauthorized", (req, res) => {
+            res.render("no-auth");
+        })
         .all("*", (req, res) => {
             res.status(statusCodeNotFound);
             res.render("error");
