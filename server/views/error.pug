@@ -4,9 +4,12 @@ head
     meta(charset="UTF-8")
     title Error
     link(rel="stylesheet" href="/static/css/error.css")
+    link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
 body
-    h1
-        | This page not exist
-    a(href="/") Go to Startup page
-    a(href="/home") Go to Home page
+    div.error-container.col-sm-offset-3
+        h1.error-title
+            | This page not exist!
+        h1.error-title 
+            |  How you get here?
+        a.col-sm-offset-2(href="/home") Go to Home page
     

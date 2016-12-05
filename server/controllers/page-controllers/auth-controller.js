@@ -61,14 +61,14 @@ module.exports = (data) => {
         },
         friends(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
             let user = req.user;
             res.render("user-friends", { user });
         },
         friendsSearch(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
             let user = req.user;
             let str = req.body.search;
@@ -81,7 +81,7 @@ module.exports = (data) => {
         },
         searchFriends(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
             let user = req.user;
             let str = req.body.search;

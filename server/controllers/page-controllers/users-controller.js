@@ -1,19 +1,19 @@
 "use strict";
 const JSFtp = require("jsftp");
 
-const ftp = new JSFtp({
-    host: process.env["FTP_HOST"],
-    port: process.env["FTP_PORT"],
-    user: process.env["FTP_USER"],
-    pass: process.env["FTP_PASS"]
-});
+// const ftp = new JSFtp({
+//     host: process.env["FTP_HOST"],
+//     port: process.env["FTP_PORT"],
+//     user: process.env["FTP_USER"],
+//     pass: process.env["FTP_PASS"]
+// });
 
 
 module.exports = (data) => {
     return {
         profile(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else {
                 let user = req.user;
                 res.render("user-profile", { user });
@@ -43,7 +43,7 @@ module.exports = (data) => {
         },
         getUpdateUser(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let user = req.user;
@@ -51,7 +51,7 @@ module.exports = (data) => {
         },
         sendUserRequest(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else if (req.user.friends.some(fr => fr.username.toString() === req.params.username)) {
                 res.redirect("/");
             } else {
@@ -68,7 +68,7 @@ module.exports = (data) => {
         },
         confirmFriendshipRequest(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/");
+                res.redirect("/unauthorized");
             } else {
                 let requestId = req.params.requestId,
                     otherUser = requestId.split(";")[0];
@@ -101,7 +101,7 @@ module.exports = (data) => {
         },
         updateUser(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             let newImage;
@@ -127,7 +127,7 @@ module.exports = (data) => {
         },
         uploadUserImage(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect("/");
+                res.redirect("/unauthorized");
             }
 
             console.log(req)
@@ -146,8 +146,6 @@ module.exports = (data) => {
                     .then(res.status(200).redirect("/profile"))
                     .catch(err => console.log(err.message));
             }
-
-
         }
     };
 };
