@@ -61,22 +61,35 @@ module.exports = (data) => {
         },
         friends(req, res) {
             if (!req.isAuthenticated()) {
-                res.redirect("/unauthorized");
+                data.users.getAnonymousUser()
+                    .then(user => {
+                        res.render("user-friends", { user });
+                    });
+            } else {
+                let user = req.user;
+                res.render("user-friends", { user });
             }
-            let user = req.user;
-            res.render("user-friends", { user });
         },
         friendsSearch(req, res) {
-            if (!req.isAuthenticated()) {
-                res.redirect("/unauthorized");
-            }
-            let user = req.user;
             let str = req.body.search;
-            if (str) {
-                data.users.getNonFriendsUsers(str, user)
-                    .then(searchedUsers => {
-                        res.render("user-searchFriends", { user, searchFriends: searchedUsers });
+            if (!req.isAuthenticated()) {
+                data.users.getAnonymousUser()
+                    .then(user => {
+                        if (str) {
+                            data.users.getNonFriendsUsers(str, user)
+                                .then(searchedUsers => {
+                                    res.render("user-searchFriends", { user, searchFriends: searchedUsers });
+                                });
+                        }
                     });
+            } else {
+                let user = req.user;
+                if (str) {
+                    data.users.getNonFriendsUsers(str, user)
+                        .then(searchedUsers => {
+                            res.render("user-searchFriends", { user, searchFriends: searchedUsers });
+                        });
+                }
             }
         },
         searchFriends(req, res) {

@@ -1,13 +1,25 @@
 .user-info {
-    background-color: #ccc;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #d4d4d4;
     color: #37003C;
+    box-shadow: 10px 10px 5px #2c2c2c;
+}
+
+.user-info img {
+    max-width: 200px;
+    max-height: 300px;
 }
 
 .information {
     list-style-type: none;
+    text-align: center;
 }
 
 .information li {
+    margin-top: 40px;
     margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: bolder;
 }

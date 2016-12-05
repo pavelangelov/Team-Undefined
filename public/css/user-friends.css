@@ -2,6 +2,25 @@ ul {
     list-style-type: none;
 }
 
+.user {
+    margin: 15px;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #2c2c2c;
+}
+
+.user img {
+    width: 120px;
+    height: 90px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #2c2c2c;
+}
+
+.user a {
+    font-size: 18px;
+}
+
 .friend {
     margin: 5px;
 }

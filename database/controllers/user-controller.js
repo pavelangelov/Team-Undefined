@@ -136,7 +136,7 @@ module.exports = {
     },
     getNonFriendsUsers(str, user) {
         return new Promise((resolve, reject) => {
-            let userFriends = user.friends;
+            let userFriends = user.friends || [];
             userFriends.push(user);
             let searchedUsers = [],
                 findedUsers = [];

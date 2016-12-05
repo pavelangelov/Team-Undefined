@@ -4,8 +4,8 @@ block site-title
 block style
     link(rel="stylesheet" href="/static/css/users/users-profile.css")
 block container
-    div.col-sm-5.col-sm-offset-3.user-info
-        img.profile-picture.col-sm-4(src=pageOwner.image)
+    div.col-sm-7.col-sm-offset-2.user-info
+        img.profile-picture.col-sm-5(src=pageOwner.image)
         ul.information.col-sm-7
             li.row
                 div.left.col-sm-6
@@ -21,8 +21,8 @@ block container
                 div.left.col-sm-6
                     | About me:
                 div.right.col-sm-6
-                    if pageOwner.aboutMe
-                        | #{pageOwner.aboutMe}
+                    if pageOwner.userInfo
+                        | #{pageOwner.userInfo}
                     else
                         | No information.
         if pageOwner.isFriend
