@@ -2,10 +2,10 @@
 const JSFtp = require("jsftp");
 
 const ftp = new JSFtp({
-    host: "netcoms.eu",
-    port: 21,
-    user: "nodejsftpuser",
-    pass: "ftpJs1620@"
+    host: process.env["FTP_HOST"],
+    port: process.env["FTP_PORT"],
+    user: process.env["FTP_USER"],
+    pass: process.env["FTP_PASS"]
 });
 
 
