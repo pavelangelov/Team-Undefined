@@ -1,5 +1,6 @@
 "use strict";
-const JSFtp = require("jsftp");
+const statusCode = require("../status-codes"),
+    JSFtp = require("jsftp");
 
 const ftp = new JSFtp({
     host: process.env["FTP_HOST"],
@@ -97,7 +98,7 @@ module.exports = (data) => {
                     .catch(err => res.json(err));
             }
         },
-        removeUserFromFriends() { },
+        removeUserFromFriends() {},
         updateUser(req, res) {
             if (!req.isAuthenticated()) {
                 res.redirect("/unauthorized");
@@ -141,7 +142,7 @@ module.exports = (data) => {
                 });
 
                 data.users.updateUserImage(req.user._id, newImage)
-                    .then(res.status(200).redirect("/profile"))
+                    .then(res.status(statusCode.OK).redirect("/profile"))
                     .catch(err => console.log(err.message));
             }
         }
