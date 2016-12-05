@@ -16,36 +16,44 @@ html(lang="en")
         script(src="/static/bower_components/alertify.js/lib/alertify.min.js")
 
     body
-    div(id="pos-fixed")
-            header(id="header" class="row")
-                h1(class="col-sm-8") 
-                    a(href="/") Ninja`s Social Network
-                div(id="user-info" class=" col-sm-3")
-                    div(class="row col-sm-12")
-                        div(class="user-image col-sm-1 col-sm-offset-6")
-                            img(src=user.image alt="" class="profile-picture")
+        div(id="pos-fixed")
+                header(id="header" class="row")
+                    h1(class="col-sm-8") 
+                        a(href="/") Ninja`s Social Network
+                    div(id="user-info" class=" col-sm-3")
+                        div(class="row col-sm-12")
+                            div(class="user-image col-sm-1 col-sm-offset-6")
+                                img(src=user.image alt="" class="profile-picture")
+                            if !user.isAnonymous
+                                a(href="/profile" class="username col-sm-3 col-sm-offset-1") #{user.username}
+                            else
+                                span.username.col-sm-3.col-sm-offset-1 #{user.username}
+                nav(id="nav")
+                    ul(id="nav-list" class="row")
                         if !user.isAnonymous
-                            a(href="/profile" class="username col-sm-3 col-sm-offset-1") #{user.username}
+                            li(class="nav-list-item col-sm-3")
+                                a(href="/friends") Search Friends
+                            li(class="nav-list-item col-sm-3")
+                                a(href="/messages") Messages
+                            li(class="nav-list-item col-sm-3")
+                                a(href="/about") About us
+                            li(class="nav-list-item col-sm-3")
+                                a(href="/logout") Logout
                         else
-                            span.username.col-sm-3.col-sm-offset-1 #{user.username}
-            nav(id="nav")
-                ul(id="nav-list" class="row")
-                    if !user.isAnonymous
-                        li(class="nav-list-item col-sm-3")
-                            a(href="/friends") Search Friends
-                        li(class="nav-list-item col-sm-3")
-                            a(href="/messages") Messages
-                        li(class="nav-list-item col-sm-3")
-                            a(href="/about") About us
-                        li(class="nav-list-item col-sm-3")
-                            a(href="/logout") Logout
-                    else
-                        li(class="nav-list-item col-sm-4")
-                            a(href="/friends") Search people
-                        li(class="nav-list-item col-sm-4")
-                            a(href="/about") About us
-                        li(class="nav-list-item col-sm-4")
-                          a(href="/") Login or Register
-    #container.col-sm-12
-        block container
-    block body-scripts
+                            li(class="nav-list-item col-sm-4")
+                                a(href="/friends") Search people
+                            li(class="nav-list-item col-sm-4")
+                                a(href="/about") About us
+                            li(class="nav-list-item col-sm-4")
+                                a(href="/") Login or Register
+        #container.col-sm-12
+            if user.notifications
+                div.notifications-container.col-sm-offset-2
+                    if user.notifications.unreadMessages
+                        div.unreader-messages.col-sm-4.col-sm-offset-1
+                            a(href="/messages") You have #{user.notifications.unreadMessages} new messages
+                    if user.notifications.requests
+                        div.unconfirmed-requests.col-sm-4.col-sm-offset-1
+                            a(href="/profile") You have #{user.notifications.requests} unconfirmed friendship requests
+            block container
+        block body-scripts

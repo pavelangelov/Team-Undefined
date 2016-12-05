@@ -33,7 +33,10 @@ module.exports = (data) => {
             };
 
             data.messages.createMessage(messageObj)
-                .then(res.redirect("/messages"))
+                .then(() => {
+                    data.users.addUnreadMessage(messageObj.targetUserId)
+                        .then(res.redirect("/messages"));
+                })
                 .catch(err => res.json(err));
         },
         getMessages(req, res) {
@@ -44,7 +47,10 @@ module.exports = (data) => {
             let user = req.user;
             data.messages.getUserMessages(user._id)
                 .then(messages => {
-                    res.render("user-messages", { user, messages });
+                    data.users.restoreMessagesCount(user._id)
+                        .then(() => {
+                            res.render("user-messages", { user, messages });
+                        });
                 })
                 .catch(err => res.json(err));
         }

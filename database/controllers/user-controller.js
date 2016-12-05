@@ -19,6 +19,7 @@ module.exports = {
             image: defaultUserImage,
             telerikAccount: user.telerikAccount,
             githubAccount: user.telerikAccount,
+            unreadMessages: 0,
             requests: [],
             friends: []
         });
@@ -178,5 +179,37 @@ module.exports = {
             .then(() => {
                 return user;
             });
+    },
+    addUnreadMessage(userId) {
+        return new Promise((resolve, reject) => {
+            User.findOneAndUpdate(
+                { "_id": userId },
+                { $inc: { "unreadMessages": 1 } },
+                { save: true },
+                (err, user) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(user);
+                }
+            );
+        });
+    },
+    restoreMessagesCount(userId) {
+        return new Promise((resolve, reject) => {
+            User.findOneAndUpdate(
+                { "_id": userId },
+                { "unreadMessages": 0 },
+                { save: true },
+                (err, user) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(user);
+                }
+            );
+        });
     }
 };

@@ -54,6 +54,18 @@ module.exports = (data) => {
                                 p.isLiked = true;
                             }
                         });
+
+                        // Add notifications for messages or requests
+                        if (user.requests.length || user.unreadMessages) {
+                            user.notifications = { };
+                            if (user.requests.length) {
+                                user.notifications.requests = user.requests.length;
+                            }
+
+                            if (user.unreadMessages) {
+                                user.notifications.unreadMessages = user.unreadMessages;
+                            }
+                        }
                         res.render("user-home", { user, posts });
                     })
                     .catch(err => res.status(statusCodes.BadRequest.code).send(err.message));

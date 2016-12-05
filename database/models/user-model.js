@@ -27,6 +27,7 @@ let userSchema = new Schema({
     image: { type: String },
     telerikAccount: { type: String },
     githubAccount: { type: String },
+    unreadMessages: { type: Number },
     requests: [
         {
             _id: {

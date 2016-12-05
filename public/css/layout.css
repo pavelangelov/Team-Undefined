@@ -87,3 +87,23 @@ body {
     top: 100px;
     overflow: auto;
 }
+
+.notifications-container .unconfirmed-requests {
+    padding: 5px;
+    background-color: mediumspringgreen;
+    border: 1px solid green;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.notifications-container .unreader-messages {
+    padding: 5px;
+    background-color: dodgerblue;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.notifications-container .unreader-messages a {
+    color: #fff;
+}
