@@ -88,17 +88,16 @@ module.exports = (data) => {
 
                         Promise.all([data.users.addFriend(req.user.username, friend), data.users.removeRequest(req.user.username, requestId)])
                             .then(() => {
+                                let wait = 500;
                                 setTimeout(() => {
                                     res.redirect("/profile");
-                                }, 500);
+                                }, wait);
                             });
                     })
                     .catch(err => res.json(err));
             }
         },
-        removeUserFromFriends(req, res) {
-
-        },
+        removeUserFromFriends() { },
         updateUser(req, res) {
             if (!req.isAuthenticated()) {
                 res.redirect("/unauthorized");
@@ -130,7 +129,6 @@ module.exports = (data) => {
                 res.redirect("/unauthorized");
             }
 
-            console.log(req)
             if (req.files.file.originalFilename) {
                 let image = req.files.file.originalFilename,
                     tempPath = req.files.file.path,

@@ -3,7 +3,6 @@
 
 const chai = require("chai"),
     validUsername = "valid username",
-    invalidUsername = "invalid username",
     anonymousUser = { username: "anonymous" },
     data = {
         users: {
@@ -67,6 +66,7 @@ describe("Test pageController.users ", () => {
 
     it("Expect userProfile(req, res) to get anonymous user from DB and render users/users-profile when no user in request.", done => {
         let url = "users/users-profile";
+        let wait = 500;
 
         usersController.userProfile(reqFalse, res);
         setTimeout(() => {
@@ -74,11 +74,12 @@ describe("Test pageController.users ", () => {
             expect(params[1].user.username).to.equal(anonymousUser.username);
             expect(params[1].pageOwner.username).to.equal(validUsername);
             done();
-        }, 500);
+        }, wait);
     });
 
     it("Expect userProfile(req, res) to get user by username from DB and render users/users-profile when have user in request.", done => {
         let url = "users/users-profile";
+        let wait = 100;
 
         usersController.userProfile(reqTrue, res);
         setTimeout(() => {
@@ -86,6 +87,6 @@ describe("Test pageController.users ", () => {
             expect(params[1].user.username).to.equal(mockUser.username);
             expect(params[1].pageOwner.username).to.equal(validUsername);
             done();
-        }, 100);
+        }, wait);
     });
 });
