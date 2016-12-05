@@ -12,7 +12,7 @@ const chai = require("chai"),
             },
             getUserByUsername(username) {
                 if (username === validUsername) {
-                    return { username: validUsername };
+                    return Promise.resolve({ username: validUsername, friends: [], _id: 2 });
                 } else {
                     return null;
                 }
@@ -23,7 +23,7 @@ const chai = require("chai"),
 
 let expect = chai.expect;
 let params = [],
-    mockUser = { username: "Pesho" },
+    mockUser = { username: "Pesho", friends: [], _id: 1 },
     reqFalse = {
         isAuthenticated() {
             return false;
@@ -35,7 +35,7 @@ let params = [],
             return true;
         },
         user: mockUser,
-        params: { username: "some user" }
+        params: { username: validUsername }
     },
     res = {
         redirect(url) {
@@ -65,15 +65,27 @@ describe("Test pageController.users ", () => {
         expect(params[1].user.username).to.equal(mockUser.username);
     });
 
-    it("Expect userProfile(req, res) to get anonymous user from DB and render users/users-profile", done => {
+    it("Expect userProfile(req, res) to get anonymous user from DB and render users/users-profile when no user in request.", done => {
         let url = "users/users-profile";
 
         usersController.userProfile(reqFalse, res);
-            setTimeout(() => {
-                expect(params[0]).to.equal(url);
-                expect(params[1].user.username).to.equal(anonymousUser.username);
-                expect(params[1].pageOwner.username).to.equal(validUsername);
-                done();
-            }, 500);
-    })
+        setTimeout(() => {
+            expect(params[0]).to.equal(url);
+            expect(params[1].user.username).to.equal(anonymousUser.username);
+            expect(params[1].pageOwner.username).to.equal(validUsername);
+            done();
+        }, 500);
+    });
+
+    it("Expect userProfile(req, res) to get user by username from DB and render users/users-profile when have user in request.", done => {
+        let url = "users/users-profile";
+
+        usersController.userProfile(reqTrue, res);
+        setTimeout(() => {
+            expect(params[0]).to.equal(url);
+            expect(params[1].user.username).to.equal(mockUser.username);
+            expect(params[1].pageOwner.username).to.equal(validUsername);
+            done();
+        }, 100);
+    });
 });
