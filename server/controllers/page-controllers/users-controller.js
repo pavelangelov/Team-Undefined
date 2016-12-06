@@ -1,12 +1,12 @@
 "use strict";
 const JSFtp = require("jsftp");
 
-const ftp = new JSFtp({
-    host: process.env["FTP_HOST"],
-    port: process.env["FTP_PORT"],
-    user: process.env["FTP_USER"],
-    pass: process.env["FTP_PASS"]
-});
+// const ftp = new JSFtp({
+//     host: process.env["FTP_HOST"],
+//     port: process.env["FTP_PORT"],
+//     user: process.env["FTP_USER"],
+//     pass: process.env["FTP_PASS"]
+// });
 
 
 module.exports = (data) => {
