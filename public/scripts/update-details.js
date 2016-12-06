@@ -23,8 +23,6 @@ $("#update-details-form").submit((ev) => {
     $.ajax({
         url: "/update-details",
         method: "POST",
-        processData: false,
-        contentType: false,
         data: {
             firstname,
             lastname,
